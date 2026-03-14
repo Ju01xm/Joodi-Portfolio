@@ -242,14 +242,50 @@
             const isEn = (currentLang === 'en');
 
             // --- ربط زر السيرة الذاتية ---
-            // --- ربط زر السيرة الذاتية ---
             const cvBtn = document.getElementById('header-cv-btn');
             if (cvBtn) {
                 if (data.cv && data.cv.fileData) {
-                    cvBtn.href = data.cv.fileData;
-                    cvBtn.download = "Joodi_CV.pdf"; // اللابتوب بيستخدم هذي ويحمل فوراً
-                    cvBtn.target = "_blank"; // هذا "المفتاح السحري" اللي بيخلي الجوال يرضى يفتحها!
-                    cvBtn.onclick = null;
+                    cvBtn.href = "#";
+                    cvBtn.removeAttribute("target");
+                    cvBtn.removeAttribute("download");
+                    
+                    cvBtn.onclick = async (e) => {
+                        e.preventDefault();
+                        
+                        // تغيير شكل الزر مؤقتاً عشان يعرف الزائر إن التحميل شغال
+                        const originalText = cvBtn.innerHTML;
+                        cvBtn.innerHTML = "⏳";
+                        cvBtn.style.pointerEvents = "none";
+
+                        try {
+                            // تحويل الرابط الطويل إلى ملف حقيقي (Blob)
+                            const res = await fetch(data.cv.fileData);
+                            const blob = await res.blob();
+                            const blobUrl = window.URL.createObjectURL(blob);
+
+                            // إنشاء زر تحميل وهمي وضغطه برمجياً
+                            const tempLink = document.createElement('a');
+                            tempLink.style.display = 'none';
+                            tempLink.href = blobUrl;
+                            tempLink.download = "Joodi_CV.pdf";
+                            document.body.appendChild(tempLink);
+                            tempLink.click();
+                            
+                            // تنظيف الذاكرة بعد التحميل
+                            setTimeout(() => {
+                                window.URL.revokeObjectURL(blobUrl);
+                                document.body.removeChild(tempLink);
+                            }, 100);
+                            
+                        } catch (err) {
+                            console.error("خطأ في التحميل:", err);
+                            alert("حدث خطأ أثناء تحميل السيرة الذاتية.");
+                        } finally {
+                            // إرجاع الزر لشكله الطبيعي
+                            cvBtn.innerHTML = originalText;
+                            cvBtn.style.pointerEvents = "auto";
+                        }
+                    };
                 } else {
                     cvBtn.href = "#";
                     cvBtn.onclick = (e) => {
