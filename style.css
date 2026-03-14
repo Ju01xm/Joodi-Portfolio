@@ -161,7 +161,6 @@ body {
     background-attachment: fixed;
     position: relative;
     z-index: 1;
-    background-attachment: scroll !important; /* ☁️ وهنا كمان نرجع الغيوم */
 }
 
 .image-container {
