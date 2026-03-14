@@ -257,22 +257,29 @@
                     linkedinLink.target = "_blank";
                 }
 
-                const cvBtn = document.getElementById('header-cv-btn');
-                if (cvBtn) {
-                    // نتحقق من وجود الرابط في data.profile.cv
-                    if (data.profile && data.profile.cv) {
-                        cvBtn.href = data.profile.cv;
-                        cvBtn.style.display = 'inline-block'; // يظهر إذا وجد الرابط
-                        console.log("CV Link Found: ", data.profile.cv);
-                    } else {
-                        // إذا لم يجد الرابط، نظهره لكن نجعله يعطي تنبيه عند الضغط
-                        cvBtn.style.display = 'inline-block'; 
-                        cvBtn.onclick = (e) => {
-                            e.preventDefault();
-                            alert("سيتم إضافة السيرة الذاتية قريباً! ✨");
-                        };
-                    }
-                }
+                // --- زر السيرة الذاتية (تعديل الـ PDF) ---
+const cvBtn = document.getElementById('header-cv-btn');
+if (cvBtn) {
+    // نتأكد من جلب الرابط من المسار الصحيح data.profile.cv
+    const cvUrl = data.profile ? data.profile.cv : null;
+
+    if (cvUrl && cvUrl.trim() !== "") {
+        cvBtn.style.display = 'inline-block'; // إظهار الزر
+        cvBtn.href = cvUrl;
+        cvBtn.target = "_blank"; // يفتح في صفحة جديدة (ضروري للـ PDF)
+        cvBtn.rel = "noopener noreferrer";
+        cvBtn.onclick = null; // حذف أي تنبيهات
+        console.log("تم العثور على رابط الـ PDF بنجاح!");
+    } else {
+        // إذا الحقل فاضي في الداتابيز
+        cvBtn.style.display = 'inline-block';
+        cvBtn.href = "#";
+        cvBtn.onclick = (e) => {
+            e.preventDefault();
+            alert(isEn ? "CV is coming soon! ✨" : "السيرة الذاتية قريباً! تأكدي من حفظ الرابط في الأدمن");
+        };
+    }
+}
 
                 const p1 = document.getElementById('about-p1');
                 const p2 = document.getElementById('about-p2');
