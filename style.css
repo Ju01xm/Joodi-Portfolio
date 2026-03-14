@@ -554,7 +554,7 @@ footer {
 }
 
 /* الجوال */
-@media (max-width: 900px) {
+@media (max-width: 500px) {
     .hero-section {
         flex-direction: column;
         text-align: center;
