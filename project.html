@@ -47,6 +47,45 @@
             right: auto;
             left: 5%;
         }
+
+        /* =========================================
+   ترتيب صفحة الأعمال في الجوال (بطاقتين جنب بعض)
+   ========================================= */
+        html#html-root-proj body {
+            min-width: 0 !important;
+            /* فك قفل اللابتوب عن هذه الصفحة تحديداً */
+        }
+
+        @media (max-width: 768px) {
+            #all-projects-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                /* غيري رقم 2 إلى 3 إذا كنتِ مصرة على 3 بطاقات */
+                gap: 15px !important;
+                padding: 5px !important;
+            }
+
+            #all-projects-grid .exp-card {
+                width: 100% !important;
+                min-width: 0 !important;
+                /* السماح للبطاقة بالتصغر براحتها */
+                max-width: 100% !important;
+                padding: 20px 15px !important;
+                /* تصغير المسافات الداخلية لتناسب الجوال */
+                margin: 0 !important;
+            }
+
+            /* تصغير الخطوط قليلاً لتتناسب مع حجم البطاقة الجديد */
+            #all-projects-grid .exp-card h3 {
+                font-size: 0.95rem !important;
+                margin-bottom: 8px !important;
+            }
+
+            #all-projects-grid .exp-card p {
+                font-size: 0.8rem !important;
+                line-height: 1.6 !important;
+            }
+        }
     </style>
 </head>
 

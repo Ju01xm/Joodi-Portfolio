@@ -23,7 +23,7 @@
         }
 
         .lang-toggle {
-            background: #d8c9ff;
+            background: #c9e2ff;
             border: none;
             padding: 6px 16px;
             border-radius: 50px;
@@ -37,7 +37,7 @@
         }
 
         .lang-toggle:hover {
-            background: #bfa8ff;
+            background: #a8d1ff;
             color: white;
         }
     </style>
@@ -60,8 +60,6 @@
         </nav>
 
         <div class="header-actions">
-            <a href="#" id="header-cv-btn" class="btn-cv" data-ar="عرض CV" data-en="View CV" style="display: none;"
-                target="_blank">عرض CV</a>
             <button id="lang-btn" class="btn-lang" onclick="toggleLanguage()">EN</button>
         </div>
     </header>
@@ -75,17 +73,23 @@
                     <span id="typewriter"></span><span class="cursor">|</span>
                 </h1>
 
-                <div class="contact-wrapper">
-                    <a href="#contact" class="get-in-touch-btn" data-ar="تواصل معي ←" data-en="Get in Touch →">تواصل معي
-                        ←</a>
-                    <div class="social-mini-icons">
-                        <a href="#" id="contact-email-link" class="icon-square-box" title="Email">✉️</a>
-                        <a href="#" id="contact-phone-link" class="icon-square-box" title="Phone">📞</a>
-                        <a href="#" id="contact-linkedin-link" class="icon-square-box" title="LinkedIn" target="_blank">
-                            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                                style="width:20px; height:20px;">
-                        </a>
+                <div class="contact-wrapper" style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start; margin-top: 30px;">
+                    
+                    <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                        
+                        <a href="#contact" class="get-in-touch-btn" data-ar="تواصل معي ←" data-en="Get in Touch →" style="margin: 0;">تواصل معي ←</a>
+                        
+                        <div class="social-mini-icons" style="display: flex; gap: 10px; margin: 0;">
+                            <a href="#" id="contact-linkedin-link" class="icon-square-box" title="LinkedIn" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" style="width:20px; height:20px;">
+                            </a>
+                            <a href="#" id="contact-phone-link" class="icon-square-box" title="Phone">📞</a>
+                            <a href="#" id="contact-email-link" class="icon-square-box" title="Email">✉️</a>
+                        </div>
                     </div>
+                    
+                    <a href="#" id="header-cv-btn" data-ar="عرض CV 📄" data-en="View CV 📄" style="display: none; border: 2px solid #003049; color: #003049; background: transparent; padding: 8px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s; font-size: 0.95rem; width: fit-content;" target="_blank" onmouseover="this.style.background='#003049'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='#003049';">عرض CV 📄</a>
+
                 </div>
             </div>
             <div class="hero-sidebar"></div>
