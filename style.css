@@ -152,7 +152,7 @@ body {
 
 /* قسم الصورة المائلة */
 .image-section {
-    padding: 0 0 100px 0;
+    padding: 0 0 120px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -207,6 +207,7 @@ body {
     /* طبقة منخفضة ليمر من تحت الأزرق */
     margin-top: -50px;
     padding: 140px 5% 100px 5%;
+    padding-top: 60px !important;
     /* مسافة بادينج إضافية لأن القوس الأزرق سيغطي جزء منها */
     text-align: center;
 }
