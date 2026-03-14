@@ -627,15 +627,12 @@ footer {
         flex-direction: column !important; /* تحويل العرض لعمودي عشان ياخذ راحته */
         padding: 60px 20px 40px 20px !important;
         text-align: center !important; 
+        align-items: center;
     }
 
     .hero-content {
         width: 100% !important; /* إعطاء النص مساحة الشاشة كاملة */
         text-align: center !important;
-    }
-
-    .hero-sidebar {
-        display: none !important; /* إخفاء المساحة الجانبية اللي كانت تضغط النص */
     }
 
     .typewriter-container {
