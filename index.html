@@ -242,12 +242,13 @@
             const isEn = (currentLang === 'en');
 
             // --- ربط زر السيرة الذاتية ---
+            // --- ربط زر السيرة الذاتية ---
             const cvBtn = document.getElementById('header-cv-btn');
             if (cvBtn) {
                 if (data.cv && data.cv.fileData) {
                     cvBtn.href = data.cv.fileData;
-                    cvBtn.download = "Joodi_CV.pdf";
-                    cvBtn.removeAttribute("target");
+                    cvBtn.download = "Joodi_CV.pdf"; // اللابتوب بيستخدم هذي ويحمل فوراً
+                    cvBtn.target = "_blank"; // هذا "المفتاح السحري" اللي بيخلي الجوال يرضى يفتحها!
                     cvBtn.onclick = null;
                 } else {
                     cvBtn.href = "#";
