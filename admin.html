@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | جودي آل عمره</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0077b6;
+            --secondary: #90e0ef;
+            --dark: #003049;
+            --accent: #d8eaff;
+            --bg: #f4faff;
+            --white: #ffffff;
+            --text: #2d2d2d;
+            --danger: #ef4444;
+            --sidebar-w: 260px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            direction: rtl;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        #loginScreen {
+            position: fixed;
+            inset: 0;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .login-box {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .login-brand .b1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+
+        .login-brand p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .login-input {
+            background: #f8f9fa;
+            border: 1.5px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1rem;
+            font-size: 1rem;
+            width: 100%;
+            transition: 0.2s;
+            text-align: center;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #fff;
+        }
+
+        .login-input.shake {
+            animation: shake 0.3s ease;
+            border-color: var(--danger);
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0)
+            }
+
+            25% {
+                transform: translateX(-8px)
+            }
+
+            75% {
+                transform: translateX(8px)
+            }
+        }
+
+        .login-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+        }
+
+        .login-btn:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        #adminApp {
+            display: none;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-w);
+            background: var(--dark);
+            color: var(--white);
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .sb-brand {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .sb-brand .b1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            letter-spacing: 2px;
+        }
+
+        .sb-brand .badge {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .sb-nav {
+            flex: 1;
+            padding: 1.5rem 0;
+            overflow-y: auto;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 0 1.5rem 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: 0.2s;
+            border-right: 4px solid transparent;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item.active {
+            border-right-color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .sb-foot {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: #fff;
+            padding: 0.7rem;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-logout {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ff6b6b;
+            border: none;
+        }
+
+        .btn-logout:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .admin-main {
+            margin-right: var(--sidebar-w);
+            flex: 1;
+            padding: 2.5rem 3rem;
+            background: var(--bg);
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .topbar h1 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            font-weight: 800;
+        }
+
+        .topbar p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        .panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 119, 182, 0.03);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.8rem;
+            display: inline-block;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            background: #fafcff;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px var(--accent);
+        }
+
+        .fg-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-main {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-main:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .grid-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .item-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: 0.2s;
+        }
+
+        .item-card:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 10px 20px rgba(0, 119, 182, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .item-card h4 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-edit {
+            flex: 1;
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            padding: 0.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-edit:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-del {
+            flex: 1;
+            background: #fee2e2;
+            color: var(--danger);
+            border: none;
+            padding: 0.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-del:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 48, 73, 0.6);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 800px;
+            padding: 2.5rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            z-index: 9999;
+            transition: 0.3s;
+            opacity: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: #10b981;
+        }
+
+        .toast.error {
+            background: var(--danger);
+        }
+
+        .format-toolbar {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 5px;
+            background: #f4faff;
+            border: 1px solid #e2e8f0;
+            padding: 5px;
+            border-radius: 8px;
+            flex-wrap: wrap;
+        }
+
+        .format-btn {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--dark);
+            transition: 0.2s;
+        }
+
+        .format-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(100%);
+                transition: 0.3s;
+                z-index: 1000;
+            }
+
+            .admin-main {
+                margin-right: 0;
+                padding: 1.5rem;
+            }
+
+            .fg-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loginScreen">
+        <div class="login-box">
+            <div class="login-brand">
+                <div class="b1">JOODI</div>
+                <p>مرحباً بكِ في كواليس الإبداع ✨</p>
+            </div>
+            <div><input type="password" class="login-input" id="passInput" placeholder="أدخلي كلمة المرور"></div>
+            <button class="login-btn" id="loginBtn">فتح اللوحة</button>
+            <a href="index.html"
+                style="color:#777; font-size:0.9rem; text-decoration:none; margin-top:-5px; font-weight:600; transition:0.3s;"
+                onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='#777'">← العودة
+                للرئيسية</a>
+            <p id="loginErr" style="color:var(--danger); font-size:0.85rem; height:20px; margin-top:-5px;"></p>
+        </div>
+    </div>
+
+    <div id="adminApp">
+        <aside class="sidebar">
+            <div class="sb-brand">
+                <div class="b1">JOODI ALAMRAH</div>
+                <div class="badge">لوحة التحكم</div>
+            </div>
+            <nav class="sb-nav">
+                <div class="nav-label">الإعدادات العامة</div>
+                <div class="nav-item active" data-panel="profile">👤 الملف الشخصي والتواصل</div>
+                <div class="nav-item" data-panel="cv">📄 السيرة الذاتية (CV)</div>
+                <div class="nav-label">المحتوى</div>
+                <div class="nav-item" data-panel="projects">🏆 قصص النجاح (أعمالي)</div>
+                <div class="nav-item" data-panel="blog">✍️ مدونة معمل الأفكار</div>
+                <div class="nav-item" data-panel="certs">🎓 المؤهلات والشهادات</div>
+                <div class="nav-label">الأمان</div>
+                <div class="nav-item" data-panel="security">🔒 تغيير كلمة المرور</div>
+            </nav>
+            <div class="sb-foot">
+                <a href="index.html" target="_blank" class="btn-outline">👁️ معاينة الموقع</a>
+                <button class="btn-outline btn-logout" onclick="logout()">تسجيل الخروج</button>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <div class="topbar">
+                <div>
+                    <h1 id="pTitle">الملف الشخصي</h1>
+                    <p id="pSub">إدارة الهوية وأرقام التواصل ونصوص النبذة</p>
+                </div>
+            </div>
+
+            <div class="panel active" id="panel-profile">
+                <div class="card">
+                    <h3>👤 هوية الكاتبة (تظهر أسفل المقالات)</h3>
+                    <p style="font-size:0.85rem; color:#666; margin-bottom:1.5rem;">هذه البيانات تظهر في "توقيع" نهاية
+                        كل مقال في المدونة.</p>
+
+                    <div class="fg-grid">
+                        <div class="form-group">
+                            <label>اسم الكاتبة (عربي)</label>
+                            <input id="prof-name-ar" placeholder="مثلاً: جودي آل عمره">
+                        </div>
+                        <div class="form-group">
+                            <label>اسم الكاتبة (إنجليزي)</label>
+                            <input id="prof-name-en" dir="ltr" placeholder="e.g. Joodi Alamrah">
+                        </div>
+                    </div>
+
+                    <div class="fg-grid">
+                        <div class="form-group">
+                            <label>الوصف/المسمى (عربي)</label>
+                            <input id="prof-bio-ar" placeholder="مثلاً: كاتبة محتوى إبداعي">
+                        </div>
+                        <div class="form-group">
+                            <label>الوصف/المسمى (إنجليزي)</label>
+                            <input id="prof-bio-en" dir="ltr" placeholder="e.g. Creative Content Writer">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>شعار الموقع (Logo) - سيظهر بخلفية بيضاء في المقالات</label>
+                        <input type="file" id="prof-logo" accept="image/*">
+                        <small style="color: #888;">يفضل أن يكون الشعار شفافاً (PNG).</small>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>📞 معلومات التواصل</h3>
+                    <div class="fg-grid">
+                        <div class="form-group"><label>رقم الجوال</label><input id="prof-phone" dir="ltr"></div>
+                        <div class="form-group"><label>البريد الإلكتروني</label><input id="prof-email" dir="ltr"></div>
+                        <div class="form-group"><label>رابط LinkedIn</label><input id="prof-linkedin" dir="ltr"></div>
+                    </div>
+                </div>
+
+                <div class="card" style="border: 2px solid var(--secondary);">
+                    <h3>✏️ إعدادات المسميات والألوان</h3>
+                    <p style="font-size:0.85rem; color:#666; margin-bottom:1.5rem;">يمكنك تغيير أسماء الأقسام واختيار
+                        لون النص المتحرك في الموقع من هنا.</p>
+
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label>🎨 لون النص المتحرك (الاسم في الآلة الكاتبة)</label>
+                        <input type="color" id="t-color" value="#a2cbff"
+                            style="height: 50px; width: 100px; cursor: pointer; padding: 2px; border-radius: 8px;">
+                    </div>
+
+                    <div class="fg-grid">
+                        <div class="form-group"><label>قسم النبذة (عربي)</label><input id="t-about-ar"
+                                placeholder="رحلتي بين الطب والكلمة"></div>
+                        <div class="form-group"><label>قسم النبذة (إنجليزي)</label><input id="t-about-en" dir="ltr"
+                                placeholder="Where Medicine Meets Words"></div>
+                    </div>
+                    <div class="fg-grid">
+                        <div class="form-group"><label>قسم المهارات (عربي)</label><input id="t-skills-ar"
+                                placeholder="مجالات الإبداع"></div>
+                        <div class="form-group"><label>قسم المهارات (إنجليزي)</label><input id="t-skills-en" dir="ltr"
+                                placeholder="Areas of Creativity"></div>
+                    </div>
+                    <div class="fg-grid">
+                        <div class="form-group"><label>قسم الأعمال (عربي)</label><input id="t-port-ar"
+                                placeholder="أعمالي وكتاباتي"></div>
+                        <div class="form-group"><label>قسم الأعمال (إنجليزي)</label><input id="t-port-en" dir="ltr"
+                                placeholder="My Works & Writings"></div>
+                    </div>
+                    <div class="fg-grid">
+                        <div class="form-group"><label>قسم المدونة (عربي)</label><input id="t-blog-ar"
+                                placeholder="مدونة معمل الأفكار"></div>
+                        <div class="form-group"><label>قسم المدونة (إنجليزي)</label><input id="t-blog-en" dir="ltr"
+                                placeholder="Ideas Lab Blog"></div>
+                    </div>
+                    <div class="fg-grid">
+                        <div class="form-group"><label>قسم الشهادات (عربي)</label><input id="t-certs-ar"
+                                placeholder="الدورات والشهادات"></div>
+                        <div class="form-group"><label>قسم الشهادات (إنجليزي)</label><input id="t-certs-en" dir="ltr"
+                                placeholder="Certifications & Courses"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>نبذة عني</h3>
+                    <div class="form-group"><label>الفقرة الأولى (عربي)</label><textarea id="prof-about1-ar"
+                            rows="3"></textarea></div>
+                    <div class="form-group"><label>الفقرة الأولى (إنجليزي)</label><textarea id="prof-about1-en" rows="3"
+                            dir="ltr"></textarea></div>
+                    <div class="form-group"><label>الفقرة الثانية (عربي)</label><textarea id="prof-about2-ar"
+                            rows="3"></textarea></div>
+                    <div class="form-group"><label>الفقرة الثانية (إنجليزي)</label><textarea id="prof-about2-en"
+                            rows="3" dir="ltr"></textarea></div>
+                </div>
+
+                <button class="btn-main" onclick="saveProfile()" id="saveProfileBtn"
+                    style="width: 100%; font-size: 1.1rem; padding: 1rem;">💾 حفظ جميع بيانات وإعدادات الملف
+                    الشخصي</button>
+            </div>
+
+            <div class="panel" id="panel-cv">
+                <div class="card" style="text-align: center; padding: 4rem 2rem;">
+                    <h3 style="border:none;">تحديث السيرة الذاتية (PDF)</h3>
+                    <p style="color:#666; margin-bottom: 2rem;">ارفعي النسخة الأحدث من سيرتك الذاتية.</p>
+                    <input type="file" id="cv-file" accept=".pdf"
+                        style="margin: 0 auto 2rem; display: block; max-width: 300px;">
+                    <button class="btn-main" onclick="uploadCV()">⬆️ رفع وتحديث الـ CV</button>
+                </div>
+            </div>
+
+            <div class="panel" id="panel-projects">
+                <button class="btn-main" onclick="openModal('projects')">+ إضافة قصة نجاح جديدة</button>
+                <div class="grid-items" id="projects-list"></div>
+            </div>
+
+            <div class="panel" id="panel-blog">
+                <button class="btn-main" onclick="openModal('blog')">+ إضافة تدوينة جديدة</button>
+                <div class="grid-items" id="blog-list"></div>
+            </div>
+
+            <div class="panel" id="panel-certs">
+                <button class="btn-main" onclick="openModal('certs')">+ إضافة مؤهل جديد</button>
+                <div class="grid-items" id="certs-list"></div>
+            </div>
+
+            <div class="panel" id="panel-security">
+                <div class="card" style="max-width: 500px; margin: 0 auto;">
+                    <h3>🔑 تغيير كلمة المرور</h3>
+                    <p style="font-size:0.85rem; color:#666; margin-bottom:1.5rem;">كلمة المرور الافتراضية هي
+                        <b>joodi2026</b>. يمكنك تغييرها الآن لحماية لوحة التحكم.
+                    </p>
+                    <div class="form-group"><label>كلمة المرور الحالية</label><input type="password" id="curPass" />
+                    </div>
+                    <div class="form-group"><label>كلمة المرور الجديدة (6 أحرف أو أرقام على الأقل)</label><input
+                            type="password" id="newPass" /></div>
+                    <div class="form-group"><label>تأكيد كلمة المرور الجديدة</label><input type="password"
+                            id="confPass" /></div>
+                    <button class="btn-main" style="width: 100%; margin-top: 1rem;" onclick="changePass()">تحديث كلمة
+                        المرور</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle" style="color:var(--dark); margin-bottom:1.5rem;">إضافة جديد</h2>
+            <div id="modalBody"></div>
+            <div style="display:flex; gap:1rem; margin-top:2rem; border-top: 1px solid #eee; padding-top: 1.5rem;">
+                <button id="saveBtn" class="btn-main" onclick="saveData()">💾 حفظ التغييرات</button>
+                <button class="btn-main" style="background:#f1f5f9; color:#475569;"
+                    onclick="closeModal()">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="inlineImgUpload" accept="image/*" style="display:none;">
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // دالة جلب الباسوورد
+        function getPass() { return localStorage.getItem('joodi_admin_pass') || "joodi2026"; }
+
+        const FIREBASE_URL = "https://joodisite-default-rtdb.firebaseio.com";
+        let currentMode = ''; let editId = null; let currentImageTarget = '';
+
+        const META = {
+            profile: { title: 'الملف الشخصي والإعدادات', sub: 'إدارة الهوية وأرقام التواصل ومسميات الأقسام ونصوص النبذة' },
+            cv: { title: 'السيرة الذاتية', sub: 'رفع ملف الـ PDF الخاص بالـ CV' },
+            projects: { title: 'قصص النجاح', sub: 'إدارة أعمالك ومشاريعك السابقة' },
+            blog: { title: 'معمل الأفكار', sub: 'محرر المقالات والتدوينات الإبداعية' },
+            certs: { title: 'المؤهلات', sub: 'إدارة الدورات والشهادات الأكاديمية' },
+            security: { title: 'الأمان والإعدادات', sub: 'تغيير كلمة مرور لوحة التحكم الخاصة بكِ' }
+        };
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function () {
+                const panelId = this.getAttribute('data-panel');
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                document.getElementById('panel-' + panelId).classList.add('active');
+                document.getElementById('pTitle').innerText = META[panelId].title;
+                document.getElementById('pSub').innerText = META[panelId].sub;
+            });
+        });
+
+        window.onload = () => { if (sessionStorage.getItem('joodi_auth') === 'true') { document.getElementById('loginScreen').style.display = 'none'; document.getElementById('adminApp').style.display = 'flex'; loadProfile(); renderItems(); } };
+        document.getElementById('loginBtn').addEventListener('click', checkPass);
+        document.getElementById('passInput').addEventListener('keypress', e => { if (e.key === 'Enter') checkPass(); });
+
+        function checkPass() {
+            const inp = document.getElementById('passInput');
+            if (inp.value === getPass()) { sessionStorage.setItem('joodi_auth', 'true'); window.location.reload(); }
+            else { inp.classList.add('shake'); document.getElementById('loginErr').innerText = "كلمة المرور غير صحيحة ❌"; setTimeout(() => inp.classList.remove('shake'), 400); }
+        }
+
+        // دالة تغيير الباسوورد (الجديدة)
+        function changePass() {
+            const cur = document.getElementById('curPass').value;
+            const nw = document.getElementById('newPass').value;
+            const conf = document.getElementById('confPass').value;
+
+            if (cur !== getPass()) return showToast('كلمة المرور الحالية غير صحيحة', 'error');
+            if (nw.length < 6) return showToast('كلمة المرور يجب أن تكون 6 أحرف أو أرقام على الأقل', 'error');
+            if (nw !== conf) return showToast('كلمتا المرور غير متطابقتين', 'error');
+
+            localStorage.setItem('joodi_admin_pass', nw); // حفظ الباسوورد الجديد في المتصفح
+            ['curPass', 'newPass', 'confPass'].forEach(id => document.getElementById(id).value = '');
+            showToast('✅ تم تحديث كلمة المرور بنجاح!', 'success');
+        }
+
+        function logout() { sessionStorage.removeItem('joodi_auth'); window.location.reload(); }
+        function showToast(msg, type = 'success') { const t = document.getElementById('toast'); t.innerText = msg; t.className = `toast show ${type}`; setTimeout(() => t.classList.remove('show'), 3000); }
+
+        // تحديث دالة التحميل
+        async function loadProfile() {
+            try {
+                const res = await fetch(`${FIREBASE_URL}/profile.json`);
+                const data = await res.json();
+                if (data) {
+                    // الحقول الجديدة
+                    document.getElementById('prof-name-ar').value = data.authorNameAr || '';
+                    document.getElementById('prof-name-en').value = data.authorNameEn || '';
+                    document.getElementById('prof-bio-ar').value = data.authorBioAr || '';
+                    document.getElementById('prof-bio-en').value = data.authorBioEn || '';
+
+                    // التواصل
+                    document.getElementById('prof-phone').value = data.phone || '';
+                    document.getElementById('prof-email').value = data.email || '';
+                    document.getElementById('prof-linkedin').value = data.linkedin || '';
+
+                    window.oldLogo = data.logo || '';
+                }
+            } catch (e) { console.error("Error loading profile", e); }
+        }
+
+        // تحديث دالة الحفظ
+        async function saveProfile() {
+            const btn = document.getElementById('saveProfileBtn');
+            btn.innerText = "جاري الحفظ...";
+
+            let logoData = window.oldLogo;
+            if (document.getElementById('prof-logo').files[0]) {
+                logoData = await toBase64(document.getElementById('prof-logo').files[0]);
+            }
+
+            const profileData = {
+                authorNameAr: document.getElementById('prof-name-ar').value,
+                authorNameEn: document.getElementById('prof-name-en').value,
+                authorBioAr: document.getElementById('prof-bio-ar').value,
+                authorBioEn: document.getElementById('prof-bio-en').value,
+                phone: document.getElementById('prof-phone').value,
+                email: document.getElementById('prof-email').value,
+                linkedin: document.getElementById('prof-linkedin').value,
+                logo: logoData
+            };
+
+            await fetch(`${FIREBASE_URL}/profile.json`, { method: 'PUT', body: JSON.stringify(profileData) });
+            btn.innerText = "💾 حفظ كافة التغييرات";
+            showToast("تم تحديث هويتك بنجاح! ✨");
+        }
+
+        async function uploadCV() { const file = document.getElementById('cv-file').files[0]; if (!file) return showToast("الرجاء اختيار ملف PDF أولاً", "error"); const base64 = await toBase64(file); await fetch(`${FIREBASE_URL}/cv.json`, { method: 'PUT', body: JSON.stringify({ fileData: base64 }) }); showToast("تم تحديث السيرة الذاتية بنجاح! 📄"); }
+
+        async function renderItems() {
+            try {
+                const res = await fetch(`${FIREBASE_URL}/.json`); const data = await res.json() || {};
+                ['projects', 'blog', 'certs'].forEach(folder => {
+                    const list = document.getElementById(`${folder}-list`); list.innerHTML = '';
+                    if (data[folder]) {
+                        Object.keys(data[folder]).forEach(id => {
+                            const item = data[folder][id];
+                            list.innerHTML += `<div class="item-card"><h4>${item.titleAr || item.title || 'بدون عنوان'}</h4>
+                                <div class="item-actions"><button class="btn-edit" onclick='prepareEdit("${folder}", "${id}", ${JSON.stringify(item).replace(/'/g, "&#39;")})'>✏️ تعديل</button>
+                                <button class="btn-del" onclick="deleteItem('${folder}', '${id}')">🗑️ حذف</button></div></div>`;
+                        });
+                    }
+                });
+            } catch (e) { }
+        }
+
+        function openModal(type) {
+            currentMode = type; editId = null;
+            const mTitle = document.getElementById('modalTitle'); const body = document.getElementById('modalBody');
+            document.getElementById('modal').style.display = 'flex';
+
+            if (type === 'projects' || type === 'blog') {
+                mTitle.innerText = type === 'projects' ? "إضافة قصة نجاح" : "إضافة تدوينة إبداعية";
+                const buildToolbar = (targetId) => type === 'blog' ? `
+                    <div class="format-toolbar">
+                        <button type="button" class="format-btn" onclick="insertFormat('${targetId}', 'h2')">عنوان رئيسي</button>
+                        <button type="button" class="format-btn" onclick="insertFormat('${targetId}', 'h3')">عنوان فرعي</button>
+                        <button type="button" class="format-btn" onclick="insertFormat('${targetId}', 'bold')"><b>عريض</b></button>
+                        <button type="button" class="format-btn" onclick="insertFormat('${targetId}', 'bullet')">• قائمة</button>
+                        <button type="button" class="format-btn" onclick="insertFormat('${targetId}', 'divider')">— فاصل</button>
+                        <button type="button" class="format-btn" style="color:var(--primary); border-color:var(--primary);" onclick="triggerInlineImage('${targetId}')">🖼 إدراج صورة بالوسط</button>
+                    </div>` : '';
+
+                const colorHtml = type === 'blog' ? `
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>🎨 لون المقال (يظهر في الغلاف والوسم)</label>
+                        <input type="color" id="inp-color" value="#0077b6" style="height: 40px; width: 100px; cursor: pointer; padding: 2px; border-radius: 8px;">
+                    </div>` : '';
+
+                body.innerHTML = `
+                    <div class="form-group"><label>العنوان (عربي)</label><input id="inp-title-ar"></div>
+                    <div class="form-group"><label>العنوان (إنجليزي)</label><input id="inp-title-en" dir="ltr"></div>
+                    <div class="form-group"><label>المحتوى (عربي)</label>${buildToolbar('inp-desc-ar')}<textarea id="inp-desc-ar" rows="8"></textarea></div>
+                    <div class="form-group"><label>المحتوى (إنجليزي)</label>${buildToolbar('inp-desc-en')}<textarea id="inp-desc-en" rows="8" dir="ltr"></textarea></div>
+                    <div class="form-group"><label>صورة الغلاف الرئيسية</label><input type="file" id="inp-img" accept="image/*" multiple></div>
+                    ${colorHtml}`;
+            } else {
+                mTitle.innerText = "إضافة مؤهل أكاديمي";
+                body.innerHTML = `<div class="form-group"><label>اسم الشهادة (عربي)</label><input id="inp-title-ar"></div><div class="form-group"><label>اسم الشهادة (إنجليزي)</label><input id="inp-title-en" dir="ltr"></div><div class="form-group"><label>الأيقونة (Emoji)</label><input id="inp-icon" placeholder="مثلاً: 🎓"></div>`;
+            }
+        }
+
+        function prepareEdit(type, id, data) {
+            openModal(type); editId = id; document.getElementById('modalTitle').innerText = "تعديل البيانات";
+            document.getElementById('inp-title-ar').value = data.titleAr || data.title || ''; document.getElementById('inp-title-en').value = data.titleEn || '';
+            if (type === 'projects' || type === 'blog') {
+                document.getElementById('inp-desc-ar').value = data.descAr || data.desc || '';
+                document.getElementById('inp-desc-en').value = data.descEn || '';
+                window.oldImages = Array.isArray(data.image) ? data.image : (data.image ? [data.image] : []);
+                if (type === 'blog' && document.getElementById('inp-color')) {
+                    document.getElementById('inp-color').value = data.color || '#0077b6';
+                }
+            }
+            else { document.getElementById('inp-icon').value = data.icon || ''; }
+        }
+
+        function closeModal() { document.getElementById('modal').style.display = 'none'; }
+
+        function insertFormat(targetId, type) {
+            const textarea = document.getElementById(targetId);
+            const start = textarea.selectionStart; const end = textarea.selectionEnd;
+            const sel = textarea.value.substring(start, end);
+            let insert = '';
+            switch (type) {
+                case 'h2': insert = `\n## ${sel || 'عنوان رئيسي'}\n`; break;
+                case 'h3': insert = `\n### ${sel || 'عنوان فرعي'}\n`; break;
+                case 'bold': insert = `**${sel || 'نص عريض'}**`; break;
+                case 'bullet': insert = `\n- ${sel || 'عنصر قائمة'}\n`; break;
+                case 'divider': insert = `\n\n---\n\n`; break;
+            }
+            textarea.value = textarea.value.substring(0, start) + insert + textarea.value.substring(end);
+            textarea.focus(); textarea.selectionStart = textarea.selectionEnd = start + insert.length;
+        }
+
+        function triggerInlineImage(targetId) { currentImageTarget = targetId; document.getElementById('inlineImgUpload').click(); }
+
+        document.getElementById('inlineImgUpload').addEventListener('change', async function (e) {
+            const f = e.target.files[0]; if (!f) return;
+            showToast("جاري ضغط ورفع الصورة...", "success");
+            const base64 = await toBase64(f);
+            const textarea = document.getElementById(currentImageTarget);
+            const insert = `\n\n![صورة توضيحية](${base64})\n\n`;
+            textarea.value = textarea.value.substring(0, textarea.selectionStart) + insert + textarea.value.substring(textarea.selectionEnd);
+            e.target.value = ''; showToast("تم إدراج الصورة بنجاح! 🖼");
+        });
+
+        async function saveData() {
+            const btn = document.getElementById('saveBtn'); btn.innerText = "جاري الحفظ..."; btn.disabled = true;
+            try {
+                let finalData = { titleAr: document.getElementById('inp-title-ar').value, titleEn: document.getElementById('inp-title-en').value };
+                if (currentMode === 'projects' || currentMode === 'blog') {
+                    finalData.descAr = document.getElementById('inp-desc-ar').value; finalData.descEn = document.getElementById('inp-desc-en').value;
+                    const fileInput = document.getElementById('inp-img'); let imagesArray = window.oldImages || [];
+                    if (fileInput && fileInput.files.length > 0) { imagesArray = []; for (let i = 0; i < fileInput.files.length; i++) imagesArray.push(await toBase64(fileInput.files[i])); }
+                    finalData.image = imagesArray;
+
+                    if (currentMode === 'blog') {
+                        finalData.color = document.getElementById('inp-color').value;
+                    }
+                } else { finalData.icon = document.getElementById('inp-icon').value; }
+
+                const url = editId ? `${FIREBASE_URL}/${currentMode}/${editId}.json` : `${FIREBASE_URL}/${currentMode}.json`;
+                await fetch(url, { method: editId ? 'PUT' : 'POST', body: JSON.stringify(finalData) });
+                closeModal(); renderItems(); showToast("تم الحفظ بنجاح!");
+            } catch (e) { showToast("حدث خطأ أثناء الحفظ", "error"); } finally { btn.innerText = "💾 حفظ التغييرات"; btn.disabled = false; }
+        }
+
+        async function deleteItem(folder, id) { if (confirm("هل أنتِ متأكدة من حذف هذا العنصر؟")) { await fetch(`${FIREBASE_URL}/${folder}/${id}.json`, { method: 'DELETE' }); renderItems(); showToast("تم الحذف بنجاح"); } }
+
+        const toBase64 = file => new Promise((resolve) => {
+            const reader = new FileReader(); reader.readAsDataURL(file);
+            reader.onload = (e) => {
+                if (!file.type.startsWith('image/')) return resolve(e.target.result);
+                const img = new Image(); img.src = e.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas'); const MAX = 800; let w = img.width, h = img.height;
+                    if (w > MAX) { h *= MAX / w; w = MAX; }
+                    canvas.width = w; canvas.height = h; canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                    if (file.type === 'image/png') { resolve(canvas.toDataURL('image/png')); }
+                    else { resolve(canvas.toDataURL('image/jpeg', 0.7)); }
+                };
+            };
+        });
+    </script>
+</body>
+
+</html>

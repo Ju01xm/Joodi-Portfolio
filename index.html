@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جودي آل عمره</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .admin-link {
+            font-size: .8rem;
+            color: #cdbcff;
+            text-decoration: none;
+            opacity: .6;
+            transition: .3s;
+        }
+
+        .admin-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .lang-toggle {
+            background: #d8c9ff;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: .85rem;
+            cursor: pointer;
+            color: #5a4a8a;
+            letter-spacing: 1px;
+            transition: .3s;
+            font-family: inherit;
+        }
+
+        .lang-toggle:hover {
+            background: #bfa8ff;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="logo-area">
+            <a href="index.html">
+                <img src="image/Joodis_logo-removebg-preview.png" alt="Joodi" class="header-logo" id="main-logo">
+            </a>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html#html-root" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+            <a href="#about-me" id="nav-about" data-ar="نبذة عني" data-en="About me">نبذة عني</a>
+            <a href="project.html" id="nav-port" data-ar="أعمالي" data-en="Portfolio">أعمالي</a>
+            <a href="blog.html" id="nav-blog" data-ar="المدونة" data-en="Blog">المدونة</a>
+        </nav>
+
+        <div class="header-actions">
+            <a href="#" id="header-cv-btn" class="btn-cv" data-ar="عرض CV" data-en="View CV" style="display: none;"
+                target="_blank">عرض CV</a>
+            <button id="lang-btn" class="btn-lang" onclick="toggleLanguage()">EN</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h3 class="greeting" data-ar="أهلاً" data-en="Hello">أهلاً</h3>
+                <h1 class="typewriter-container">
+                    <span id="im-text" data-ar="أنا " data-en="I'm ">أنا </span>
+                    <span id="typewriter"></span><span class="cursor">|</span>
+                </h1>
+
+                <div class="contact-wrapper">
+                    <a href="#contact" class="get-in-touch-btn" data-ar="تواصل معي ←" data-en="Get in Touch →">تواصل معي
+                        ←</a>
+                    <div class="social-mini-icons">
+                        <a href="#" id="contact-email-link" class="icon-square-box" title="Email">✉️</a>
+                        <a href="#" id="contact-phone-link" class="icon-square-box" title="Phone">📞</a>
+                        <a href="#" id="contact-linkedin-link" class="icon-square-box" title="LinkedIn" target="_blank">
+                            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                                style="width:20px; height:20px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-sidebar"></div>
+        </section>
+
+        <section id="image" class="image-section">
+            <div class="image-container"><img src="image/النص المائل.png" alt="Hero Image"></div>
+        </section>
+
+        <section class="about-me curve-blob" id="about-me">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2 class="section-title" id="title-about" data-ar="رحلتي بين الطب والكلمة"
+                        data-en="Where Medicine Meets Words">رحلتي بين الطب والكلمة</h2>
+                    <p class="about-text" id="about-p1">جاري تحميل النبذة...</p>
+                    <p class="about-text" id="about-p2"></p>
+                </div>
+            </div>
+
+            <h2 class="skills-title" id="title-skills" data-ar="مجالات الإبداع" data-en="Areas of Creativity">مجالات
+                الإبداع</h2>
+            <div class="skills-container">
+                <span class="skill-pill creative" data-ar="كتابة المحتوى الإبداعي"
+                    data-en="Creative Content Writing">كتابة المحتوى الإبداعي</span>
+                <span class="skill-pill storytelling" data-ar="السرد القصصي" data-en="Narrative Storytelling">السرد
+                    القصصي</span>
+                <span class="skill-pill voice" data-ar="الأداء الصوتي" data-en="Professional Voice Performance">الأداء
+                    الصوتي</span>
+                <span class="skill-pill theater" data-ar="الإلقاء المسرحي" data-en="Theatrical Presentation">الإلقاء
+                    المسرحي</span>
+            </div>
+        </section>
+
+        <section class="experience curve-filler">
+            <h2 class="section-title" id="title-port" data-ar="أعمالي وكتاباتي" data-en="My Works & Writings">أعمالي
+                وكتاباتي</h2>
+            <div class="exp-grid" id="featured-projects-container">جاري تحميل المشاريع...</div>
+
+            <div class="view-more-container" style="margin-top: 30px;">
+                <a href="project.html" class="cta-button" data-ar="عرض كافة المشاريع" data-en="View All Projects">عرض
+                    كافة المشاريع</a>
+            </div>
+        </section>
+
+        <section class="experience curve-blob" id="blog-section">
+            <div class="container" style="text-align: center;">
+                <h2 class="section-title" id="title-blog" data-ar=" معمل الأفكار" data-en="Ideas Lab"> معمل الأفكار</h2>
+                <div class="exp-grid" id="blog-container">جاري تحميل المدونة...</div>
+            </div>
+        </section>
+
+        <section class="certifications curve-filler" id="certs-section">
+            <div class="container">
+                <h2 class="section-title" id="title-certs" data-ar="الدورات والشهادات"
+                    data-en="Certifications & Courses">الدورات والشهادات</h2>
+                <div class="certs-grid" id="certs-container">جاري تحميل الشهادات...</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer curve-blob">
+        <div class="footer-container">
+            <p>© 2026 جميع الحقوق محفوظة | Joodi Portfolio</p>
+        </div>
+        <div style="margin-top:20px;"><a href="admin.html" class="admin-link">⚙️ <span data-ar="تعديل الموقع"
+                    data-en="Site Settings">تعديل الموقع</span></a></div>
+    </footer>
+
+    <div class="modal-overlay" id="postViewModal"
+        style="display:none; position:fixed; inset:0; background:rgba(0,48,73,0.8); backdrop-filter:blur(5px); z-index:9999; align-items:center; justify-content:center; padding:1rem;">
+        <div class="post-view-modal"
+            style="background:#fff; border-radius:24px; width:100%; max-width:800px; max-height:90vh; overflow-y:auto; position:relative; box-shadow:0 20px 40px rgba(0,0,0,0.2);">
+            <button onclick="closeArticle()"
+                style="position:sticky; top:0; background:rgba(255,255,255,0.95); border:none; padding:1.2rem 2rem; font-size:1rem; font-weight:700; color:#ff4d4d; cursor:pointer; width:100%; text-align:start; border-bottom:1px solid #eee; z-index:10;">✕
+                إغلاق المقال</button>
+            <article id="articleContent" style="padding:3rem 4rem; font-size:1.1rem; line-height:2.2; color:#444;">
+            </article>
+        </div>
+    </div>
+
+    <script>
+        const FIREBASE_URL = 'https://joodisite-default-rtdb.firebaseio.com';
+        let currentLang = localStorage.getItem('joodi_lang') || 'ar';
+        window.siteData = { profile: null, projects: null, certs: null, blog: null };
+
+        async function fetchSiteData() {
+            try {
+                const res = await fetch(`${FIREBASE_URL}/.json`);
+                window.siteData = await res.json();
+                renderDynamicContent();
+            } catch (e) { console.error("Error fetching data:", e); }
+        }
+
+        function renderDynamicContent() {
+            const data = window.siteData;
+            if (!data) return;
+            const isEn = (currentLang === 'en');
+
+            if (data.profile) {
+                const mainLogo = document.getElementById('main-logo');
+                if (mainLogo && data.profile.logo) mainLogo.src = data.profile.logo;
+
+                const phoneLink = document.getElementById('contact-phone-link');
+                if (phoneLink && data.profile.phone) {
+                    let cleanPhone = data.profile.phone.replace(/[^0-9]/g, '');
+                    if (cleanPhone.startsWith('0')) cleanPhone = '966' + cleanPhone.substring(1);
+                    phoneLink.href = `https://wa.me/${cleanPhone}`;
+                    phoneLink.target = "_blank";
+                }
+
+                const emailLink = document.getElementById('contact-email-link');
+                if (emailLink && data.profile.email) {
+                    emailLink.href = `mailto:${data.profile.email}`;
+                    emailLink.target = "_blank";
+                }
+
+                const linkedinLink = document.getElementById('contact-linkedin-link');
+                if (linkedinLink && data.profile.linkedin) {
+                    linkedinLink.href = data.profile.linkedin;
+                    linkedinLink.target = "_blank";
+                }
+
+                const p1 = document.getElementById('about-p1');
+                const p2 = document.getElementById('about-p2');
+                if (p1) p1.innerHTML = isEn ? (data.profile.aboutP1En || '') : (data.profile.aboutP1Ar || '');
+                if (p2) p2.innerHTML = isEn ? (data.profile.aboutP2En || '') : (data.profile.aboutP2Ar || '');
+
+                const updateTitle = (id, arVal, enVal, defaultAr, defaultEn) => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        const finalAr = arVal || defaultAr;
+                        const finalEn = enVal || defaultEn;
+                        el.setAttribute('data-ar', finalAr);
+                        el.setAttribute('data-en', finalEn);
+                        el.innerHTML = isEn ? finalEn : finalAr;
+                    }
+                };
+
+                updateTitle('title-about', data.profile.titleAboutAr, data.profile.titleAboutEn, 'رحلتي بين الطب والكلمة', 'Where Medicine Meets Words');
+                updateTitle('title-skills', data.profile.titleSkillsAr, data.profile.titleSkillsEn, 'مجالات الإبداع', 'Areas of Creativity');
+                updateTitle('title-port', data.profile.titlePortAr, data.profile.titlePortEn, 'أعمالي وكتاباتي', 'My Works & Writings');
+                updateTitle('title-blog', data.profile.titleBlogAr, data.profile.titleBlogEn, 'مدونة معمل الأفكار', 'Ideas Lab Blog');
+                updateTitle('title-certs', data.profile.titleCertsAr, data.profile.titleCertsEn, 'الدورات والشهادات', 'Certifications & Courses');
+            }
+
+            if (data.projects) {
+                const projectsArr = Object.values(data.projects).slice(0, 4);
+                const container = document.getElementById('featured-projects-container');
+                if (container) {
+                    container.innerHTML = projectsArr.map(p => {
+                        let images = Array.isArray(p.image) ? p.image : (p.image ? [p.image] : []);
+                        let mediaHtml = images.length > 0 ? `<div class="card-img"><img src="${images[0]}"></div>` : `<div class="card-img" style="font-size:3rem; background:#f4faff;">🖼️</div>`;
+
+                        if (images.length > 1) {
+                            const slidesHtml = images.map((img, i) => `<img src="${img}" class="slide ${i === 0 ? 'active' : ''}">`).join('');
+                            mediaHtml = `<div class="slider-container"><div class="slides">${slidesHtml}</div><button class="prev" onclick="moveSlide(this, -1)">&#10094;</button><button class="next" onclick="moveSlide(this, 1)">&#10095;</button></div>`;
+                        }
+                        return `<div class="exp-card">${mediaHtml}<h3>${isEn ? (p.titleEn || p.titleAr) : (p.titleAr || p.title)}</h3><p>${isEn ? (p.descEn || p.descAr) : (p.descAr || p.desc)}</p></div>`;
+                    }).join('');
+                }
+            }
+
+            if (data.blog) {
+                window.allBlogPosts = Object.values(data.blog).reverse();
+                const blogArr = window.allBlogPosts.slice(0, 3);
+                const blogContainer = document.getElementById('blog-container');
+
+                if (blogContainer) {
+                    blogContainer.innerHTML = blogArr.map((p, index) => {
+                        let coverImage = (p.image && p.image.length > 0) ? `<img src="${p.image[0]}" style="width:100%; height:220px; object-fit:cover; border-radius:15px; margin-bottom:15px;">` : `<div style="width:100%; height:220px; background:#f4faff; border-radius:15px; margin-bottom:15px; display:flex; align-items:center; justify-content:center; font-size:3rem;">📝</div>`;
+
+                        // استدعاء اللون وتطبيقه على البطاقة
+                        const postColor = p.color || 'var(--primary-blue)';
+
+                        return `
+                        <div class="exp-card" style="cursor:pointer; border-top: 5px solid ${postColor};" onclick="openArticleMain(${index})">
+                            ${coverImage}
+                            <h3>${isEn ? (p.titleEn || p.titleAr) : (p.titleAr || p.title)}</h3>
+                            <p style="display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${(isEn ? (p.descEn || p.descAr) : (p.descAr || p.desc)).replace(/[#*>-]/g, '').replace(/!\\[.*?\\]\\(.*?\\)/g, '')}</p>
+                            <span style="color:${postColor}; font-weight:bold; margin-top:15px; display:block;">${isEn ? 'Read Article &rarr;' : '&larr; اقرأ المقال'}</span>
+                        </div>`;
+                    }).join('');
+
+                    if (!document.getElementById('view-all-blog-btn')) {
+                        blogContainer.insertAdjacentHTML('afterend', `
+                            <div style="margin-top: 30px; width: 100%;">
+                                <a href="blog.html" id="view-all-blog-btn" class="cta-button">${isEn ? 'View All Articles' : 'تصفح معمل الأفكار'}</a>
+                            </div>
+                        `);
+                    }
+                }
+            } else {
+                const blogContainer = document.getElementById('blog-container');
+                if (blogContainer) blogContainer.innerHTML = 'قريباً...';
+            }
+
+            if (data.certs) {
+                const certsGrid = document.getElementById('certs-container');
+                if (certsGrid) {
+                    certsGrid.innerHTML = Object.values(data.certs).map(c => `
+                <div class="cert-item"><span class="cert-icon">${c.icon || '🎓'}</span><p>${isEn ? (c.titleEn || c.titleAr) : (c.titleAr || c.title)}</p></div>
+            `).join('');
+                }
+            }
+        }
+
+        function parseMarkdown(text) {
+            if (!text) return '';
+            let html = ''; const lines = text.split('\n'); let inList = false;
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i].trim();
+                if (line.startsWith('## ')) { if (inList) { html += '</ul>'; inList = false; } html += `<h2 style="color:#003049; margin: 30px 0 15px; font-size: 1.6rem;">${line.slice(3)}</h2>`; continue; }
+                if (line.startsWith('### ')) { if (inList) { html += '</ul>'; inList = false; } html += `<h3 style="color:#0077b6; margin: 20px 0 10px; font-size: 1.3rem;">${line.slice(4)}</h3>`; continue; }
+                if (line === '---') { if (inList) { html += '</ul>'; inList = false; } html += '<hr style="border:none; border-top:2px dashed #e8e8e8; margin: 2.5rem 0;">'; continue; }
+                if (line.startsWith('- ') || line.startsWith('• ')) { if (!inList) { html += '<ul style="padding-inline-start: 25px; margin-bottom: 15px; line-height: 1.9;">'; inList = true; } html += `<li style="margin-bottom: 8px;">${formatInline(line.slice(2))}</li>`; continue; }
+                if (line === '') { if (inList) { html += '</ul>'; inList = false; } continue; }
+                if (inList) { html += '</ul>'; inList = false; }
+                html += `<p style="margin-bottom: 18px; line-height: 2;">${formatInline(line)}</p>`;
+            }
+            if (inList) html += '</ul>'; return html;
+        }
+
+        function formatInline(text) {
+            return text.replace(/\*\*(.+?)\*\*/g, '<strong style="color:#003049;">$1</strong>')
+                .replace(/!\[([^\]]*)\]\((.*?)\)/g, (match, alt, src) => `<img src="${src}" alt="${alt || 'صورة'}" style="max-width:100%; height:auto; border-radius:16px; margin: 2rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: block;">`);
+        }
+
+        function openArticleMain(index) {
+            const post = window.allBlogPosts[index];
+            const isEn = (currentLang === 'en');
+            const title = isEn ? (post.titleEn || post.titleAr) : (post.titleAr || post.titleEn);
+            const descRaw = isEn ? (post.descEn || post.descAr) : (post.descAr || post.descEn);
+            const formattedDesc = parseMarkdown(descRaw);
+            const postColor = post.color || '#0077b6';
+
+            // نستخدم بيانات البروفايل الموجودة أصلاً في الكود عندك
+            const authorName = isEn ? 'Joodi Alamrah' : 'جودي آل عمره';
+            const authorRole = isEn ? (window.profileData?.titleAboutEn || 'Creative Content Writer') : (window.profileData?.titleAboutAr || 'كاتبة محتوى إبداعي');
+            const authorImg = window.profileData?.logo || 'image/Joodis_logo-removebg-preview.png';
+
+            document.getElementById('articleContent').innerHTML = `
+        <span style="display:inline-block; padding: 5px 15px; background:${postColor}; color:#fff; border-radius:20px; font-size:0.85rem; font-weight:bold; margin-bottom:15px;">${isEn ? 'Ideas Lab' : 'معمل الأفكار'}</span>
+        <h1 style="font-size:clamp(1.8rem, 4vw, 2.5rem); font-weight:800; color:#003049; margin-bottom:2rem; line-height:1.4;">${title}</h1>
+        <div>${formattedDesc}</div>
+        
+        <div style="margin-top: 4rem; padding: 2rem; background: white; border-radius: 20px; border: 1px solid #eee; display: flex; align-items: center; gap: 1.5rem;">
+            <div style="background: white; padding: 5px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.08); width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <img src="${authorImg}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
+            </div>
+            <div>
+                <h4 style="font-size: 1.1rem; color: #003049; margin: 0;">${authorName}</h4>
+                <p style="font-size: 0.9rem; color: #888; margin: 5px 0 0;">${authorRole}</p>
+            </div>
+        </div>
+    `;
+
+            document.getElementById('postViewModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArticle() {
+            document.getElementById('postViewModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function applyLanguage(lang) {
+            const html = document.getElementById('html-root');
+            const btn = document.getElementById('lang-btn');
+            if (html) {
+                html.setAttribute('lang', lang);
+                html.setAttribute('dir', lang === 'en' ? 'ltr' : 'rtl');
+            }
+            if (btn) btn.textContent = lang === 'en' ? 'عربي' : 'EN';
+            document.title = lang === 'en' ? 'Joodi Al Omrah' : 'جودي آل عمره';
+
+            document.querySelectorAll('[data-ar][data-en]').forEach(el => {
+                el.innerHTML = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-ar');
+            });
+
+            currentLang = lang;
+            localStorage.setItem('joodi_lang', lang);
+            renderDynamicContent();
+        }
+
+        function toggleLanguage() { applyLanguage(currentLang === 'ar' ? 'en' : 'ar'); }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            applyLanguage(currentLang);
+            fetchSiteData();
+
+            // برمجة زر عرض الـ CV في الهيدر
+            fetch(`${FIREBASE_URL}/cv.json`).then(r => r.json()).then(data => {
+                if (data && data.fileData) {
+                    const headerCvBtn = document.getElementById('header-cv-btn');
+                    if (headerCvBtn) {
+                        headerCvBtn.href = data.fileData;
+                        headerCvBtn.style.display = 'inline-block'; // إظهار الزر إذا كانت السيرة الذاتية موجودة
+                        headerCvBtn.download = "Joodi_CV.pdf"; // تحميل كملف PDF
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root-proj">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض الأعمال | جودي آل عمره</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .proj-hero {
+            padding: 120px 10% 120px 10%;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .back-btn-float {
+            position: absolute;
+            top: 30px;
+            right: 5%;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 1.05rem;
+            background: #fff;
+            padding: 10px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 119, 182, 0.1);
+            transition: 0.3s ease;
+            z-index: 100;
+            border: 1px solid var(--border-color);
+        }
+
+        .back-btn-float:hover {
+            background: var(--primary-blue);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 119, 182, 0.2);
+        }
+
+        html[dir="ltr"] .back-btn-float {
+            right: auto;
+            left: 5%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="back-btn-float" id="back-link">العودة للرئيسية &rarr;</a>
+
+    <section class="proj-hero">
+        <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); color: var(--dark-blue); font-weight: 800; margin-bottom: 15px;"
+            id="page-title">أعمالي وكتاباتي</h1>
+        <p style="font-size: 1.1rem; color: #555; max-width: 600px; margin: 0 auto;" id="page-desc">تصفح كافة مشاريعي،
+            كتاباتي، وقصص النجاح في مكان واحد.</p>
+    </section>
+
+    <section class="experience"
+        style="min-height: 60vh; padding-top: 60px; padding-bottom: 100px; background-color: #ffffff; border-radius: 0; margin-top: 0; box-shadow: none;">
+        <div class="exp-grid" id="all-projects-grid" style="margin-top: 0;">
+            <p style="text-align: center; width: 100%; color: #888;">جاري تحميل الأعمال...</p>
+        </div>
+    </section>
+
+    <footer class="footer curve-filler">
+        <div class="footer-container">
+            <p>© 2026 جميع الحقوق محفوظة | Joodi Portfolio</p>
+        </div>
+    </footer>
+
+    <script>
+        const lang = localStorage.getItem('joodi_lang') || 'ar';
+        const html = document.getElementById('html-root-proj');
+        const isEn = lang === 'en';
+
+        html.setAttribute('lang', lang);
+        html.setAttribute('dir', isEn ? 'ltr' : 'rtl');
+
+        document.getElementById('back-link').innerHTML = isEn ? "&larr; Back to Home" : "العودة للرئيسية &rarr;";
+        document.getElementById('page-desc').innerText = isEn ? "Browse all my projects, writings, and success stories in one place." : "تصفح كافة مشاريعي، كتاباتي، وقصص النجاح في مكان واحد.";
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            try {
+                // جلب جميع البيانات لكي نحصل على إعدادات المسميات + المشاريع
+                const res = await fetch('https://joodisite-default-rtdb.firebaseio.com/.json');
+                const data = await res.json();
+
+                if (data) {
+                    // --- 1. تحديث اسم القسم من الداشبورد ---
+                    if (data.profile) {
+                        const customTitleAr = data.profile.titlePortAr || "أعمالي وكتاباتي";
+                        const customTitleEn = data.profile.titlePortEn || "My Works & Writings";
+                        const finalTitle = isEn ? customTitleEn : customTitleAr;
+
+                        document.getElementById('page-title').innerText = finalTitle;
+                        document.title = isEn ? `${finalTitle} | Joodi Alamrah` : `${finalTitle} | جودي آل عمره`;
+                    }
+
+                    // --- 2. عرض المشاريع ---
+                    if (data.projects) {
+                        const projectsArray = Object.values(data.projects);
+                        const grid = document.getElementById('all-projects-grid');
+
+                        grid.innerHTML = projectsArray.map(p => {
+                            let images = Array.isArray(p.image) ? p.image : (p.image ? [p.image] : []);
+                            let mediaHtml = '<div class="card-img" style="background:#f4faff; font-size:3rem;">🖼️</div>';
+
+                            if (images.length > 1) {
+                                const slidesHtml = images.map((img, i) => `<img src="${img}" class="slide ${i === 0 ? 'active' : ''}">`).join('');
+                                mediaHtml = `
+                                <div class="slider-container">
+                                    <div class="slides">${slidesHtml}</div>
+                                    <button class="prev" onclick="moveSlide(this, -1)">&#10094;</button>
+                                    <button class="next" onclick="moveSlide(this, 1)">&#10095;</button>
+                                </div>`;
+                            } else if (images.length === 1) {
+                                mediaHtml = `<div class="card-img"><img src="${images[0]}"></div>`;
+                            }
+
+                            return `
+                            <div class="exp-card">
+                                ${mediaHtml}
+                                <h3>${isEn ? (p.titleEn || p.titleAr) : (p.titleAr || p.title)}</h3>
+                                <p>${isEn ? (p.descEn || p.descAr) : (p.descAr || p.desc)}</p>
+                            </div>`;
+                        }).join('');
+                    } else {
+                        document.getElementById('all-projects-grid').innerHTML = `<p style="text-align: center; width: 100%;">${isEn ? 'No projects available currently.' : 'لا توجد أعمال حالياً.'}</p>`;
+                    }
+                }
+            } catch (error) {
+                console.error("خطأ في جلب البيانات:", error);
+            }
+        });
+
+        window.moveSlide = function (button, direction) {
+            const container = button.closest('.slider-container');
+            const slides = container.querySelectorAll('.slide');
+
+            if (slides.length <= 1) return;
+
+            let currentIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
+            if (currentIndex === -1) currentIndex = 0;
+
+            slides[currentIndex].classList.remove('active');
+
+            let nextIndex = (currentIndex + direction + slides.length) % slides.length;
+            slides[nextIndex].classList.add('active');
+        };
+    </script>
+</body>
+
+</html>

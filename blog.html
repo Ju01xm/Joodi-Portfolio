@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root-blog">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدونة معمل الأفكار | جودي آل عمره</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="blogStyle.css">
+</head>
+<body>
+
+    <header class="blog-header">
+        <a href="index.html" class="back-link" id="blogBack">&rarr; العودة للرئيسية</a>
+        
+        <div class="blog-brand">
+            <span class="brand-name">JOODI</span>
+            <span class="brand-sub">ALAMRAH</span>
+        </div>
+        
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <button id="langToggle" class="btn-lang" onclick="toggleBlogLang()">EN</button>
+        </div>
+    </header>
+
+    <section class="blog-hero">
+        <div class="hero-label" id="heroLabel">النشرة الإبداعية</div>
+        <h1 class="blog-hero-title" id="heroTitle">معمل الأفكار<br>والمحتوى الإبداعي</h1>
+        <p class="blog-hero-desc" id="heroDesc">مساحتي الخاصة لمشاركة الأفكار، السرد القصصي، وتجاربي في كتابة المحتوى.</p>
+        
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-num" id="postCount">0</span>
+                <span class="stat-label" id="statArticles">مقال</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="posts-section">
+        <div class="posts-grid" id="postsGrid">
+            <p style="text-align: center; width: 100%;">جاري تحميل المقالات...</p>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="postViewModal">
+        <div class="post-view-modal">
+            <button class="close-post-view" onclick="closeArticle()">✕ إغلاق المقال</button>
+            <article class="newsletter-article" id="articleContent">
+                </article>
+        </div>
+    </div>
+
+    <script src="blogScript.js"></script>
+</body>
+</html>
