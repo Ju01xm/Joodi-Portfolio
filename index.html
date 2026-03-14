@@ -40,6 +40,50 @@
             background: #a8d1ff;
             color: white;
         }
+        <style>
+/* كود الطوارئ لإجبار الجوال على ترتيب النص والأزرار */
+@media (max-width: 768px) {
+    /* 1. إعطاء مساحة كاملة لقسم النص */
+    .hero-section {
+        flex-direction: column !important;
+        padding: 120px 20px 50px 20px !important;
+        display: flex !important;
+    }
+    
+    .hero-content {
+        width: 100% !important;
+        flex: none !important;
+        text-align: center !important;
+    }
+    
+    /* إخفاء المساحة الجانبية اللي كانت تضغط النص بالزاوية */
+    .hero-sidebar {
+        display: none !important;
+    }
+
+    /* 2. ترتيب النص وإصلاح تكسر الحروف */
+    .typewriter-container, #typewriter, #im-text {
+        font-size: 1.8rem !important;
+        white-space: normal !important;
+        word-break: keep-all !important;
+        line-height: 1.6 !important;
+        text-align: center !important;
+        display: block !important;
+    }
+
+    /* 3. ترتيب الأزرار وتوسيطها */
+    .contact-wrapper {
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        margin-top: 40px !important;
+    }
+    
+    .contact-wrapper > div {
+        justify-content: center !important;
+    }
+}
+</style>
     </style>
 </head>
 
