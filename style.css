@@ -601,88 +601,74 @@ footer {
 }
 
 
-/* جعل قسم الأعمال سكرول أفقي في الجوال فقط */
-@media (max-width: 768px) {
-    @media (max-width: 768px) {
-
-        #featured-projects-container {
-            display: flex !important;
-            flex-wrap: nowrap !important;
-            overflow-x: auto !important;
-            gap: 15px !important;
-            scroll-snap-type: x mandatory;
-            padding-bottom: 25px;
-            padding-left: 10px;
-        }
-
-        #featured-projects-container .exp-card {
-            flex: 0 0 50% !important;
-            min-width: 60%;
-            max-width: 70%;
-            scroll-snap-align: center;
-        }
-
-    }
-
-    #featured-projects-container::-webkit-scrollbar {
-        display: none;
-    }
-
-}
-
 /* ================================
-   Responsive Design - Mobile
+   إصلاحات التجاوب - شاشات الجوال (Mobile)
 ================================ */
-
-/* التابلت والجوال */
 @media (max-width: 768px) {
 
-
-    /* الهيدر صف واحد */
+    /* 1. ترتيب الهيدر العُلوي */
     .main-header {
         position: relative !important;
         width: 100% !important;
-        padding: 8px 10px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        padding: 15px 10px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
     }
 
-    /* الشعار */
-    .header-logo {
-        height: 20px;
-    }
+    .header-logo { height: 25px !important; }
+    .nav-links { gap: 10px !important; font-size: 0.75rem !important; }
+    .btn-cv, .btn-contact, .btn-lang { padding: 4px 8px !important; font-size: 0.75rem !important; }
+    .header-actions { gap: 6px !important; }
 
-    /* روابط التنقل */
-    .nav-links {
-        display: flex;
-        gap: 12px;
-        font-size: 0.50rem;
-    }
-
-    /* تصغير الأزرار */
-    .btn-cv,
-    .btn-contact,
-    .btn-lang {
-        padding: 4px 8px;
-        font-size: 0.75rem;
-    }
-
-    /* مجموعة الأزرار */
-    .header-actions {
-        display: flex;
-        gap: 6px;
-        align-items: center;
-    }
-
-    /* تقليل padding للهيرو */
+    /* 2. إصلاح النص المكسور والأزرار المحشورة */
     .hero-section {
-        padding: 80px 20px 40px 20px;
+        flex-direction: column !important; /* تحويل العرض لعمودي عشان ياخذ راحته */
+        padding: 60px 20px 40px 20px !important;
+        text-align: center !important; 
+    }
+
+    .hero-content {
+        width: 100% !important; /* إعطاء النص مساحة الشاشة كاملة */
+        text-align: center !important;
+    }
+
+    .hero-sidebar {
+        display: none !important; /* إخفاء المساحة الجانبية اللي كانت تضغط النص */
     }
 
     .typewriter-container {
-        font-size: 1.5rem;
+        font-size: 1.6rem !important; /* حجم خط ممتاز ومقروء */
+        white-space: normal !important; /* يسمح للكلمات تكون جنب بعض براحتها */
+        line-height: 1.6 !important;
+        margin-top: 20px !important;
     }
 
+    /* توسيط الأزرار بالقوة لكسر الكود القديم */
+    .contact-wrapper {
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        margin-top: 30px !important;
+    }
+
+    /* 3. سكرول الأعمال الأفقي */
+    #featured-projects-container {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        gap: 15px !important;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 25px;
+        padding-left: 10px;
+        scrollbar-width: none;
+    }
+    
+    #featured-projects-container::-webkit-scrollbar { display: none; }
+    
+    #featured-projects-container .exp-card {
+        flex: 0 0 85% !important;
+        scroll-snap-align: center;
+    }
 }
