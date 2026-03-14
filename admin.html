@@ -513,22 +513,53 @@
             border-color: var(--primary);
         }
 
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(100%);
-                transition: 0.3s;
-                z-index: 1000;
-            }
+        /* تابلت / آيباد عمودي (768px) */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(100%);
+        transition: 0.3s;
+        z-index: 1000;
+    }
+    .admin-main {
+        margin-right: 0;
+        padding: 1.5rem;
+    }
+    .fg-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-            .admin-main {
-                margin-right: 0;
-                padding: 1.5rem;
-            }
+/* آيباد أفقي / لابتوب صغير (1024px) */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 220px;
+        transform: translateX(0);
+    }
+    .admin-main {
+        margin-right: 220px;
+        padding: 1.8rem;
+    }
+    .fg-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-            .fg-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+/* جوال صغير (480px) */
+@media (max-width: 480px) {
+    .sidebar {
+        transform: translateX(100%);
+        width: 100%;
+        transition: 0.3s;
+        z-index: 1000;
+    }
+    .admin-main {
+        margin-right: 0;
+        padding: 1rem;
+    }
+    .fg-grid {
+        grid-template-columns: 1fr;
+    }
+}
     </style>
 </head>
 
