@@ -32,7 +32,6 @@ function getPhrases() {
     return lang === 'en' ? [
         "Joodi Alamrah",
         "Creative Content Writer",
-        "Medical Student"
     ] : [
         "جودي آل عمره",
         "كاتبة محتوى إبداعي",
