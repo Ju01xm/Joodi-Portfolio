@@ -32,6 +32,7 @@ body {
     overflow-x: hidden;
     padding-top: 0 !important;
     margin: 0;
+
 }
 
 /* 2. الهيدر العائم */
@@ -118,7 +119,7 @@ body {
     align-items: center;
     padding: 150px 10% 20px 10%;
     min-height: 80vh;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("image/غيوم2.jpg");
+    background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url("image/غيوم2.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -154,7 +155,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("image/غيوم2.jpg");
+    background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url("image/غيوم2.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -237,17 +238,20 @@ body {
 /* هذا الكود يوسع المسافة الداخلية للكرت نفسه */
 .exp-card {
     background: #fff;
-    padding: 35px 20px; /* قللنا البادينج الجانبي قليلاً ليناسب العرض الجديد */
+    padding: 35px 20px;
+    /* قللنا البادينج الجانبي قليلاً ليناسب العرض الجديد */
     border-radius: 20px;
     border: 1px solid #eee;
     display: flex;
     flex-direction: column;
-    
+
     /* التعديلات هنا لتنحيف الكرت */
     width: calc(25% - 30px);
-    min-width: 250px; /* صغرنا الحد الأدنى (كان 280) ليكون أنحف */
-    max-width: 290px; /* وضعنا حد أقصى لمنعه من التمدد العريض */
-    
+    min-width: 250px;
+    /* صغرنا الحد الأدنى (كان 280) ليكون أنحف */
+    max-width: 290px;
+    /* وضعنا حد أقصى لمنعه من التمدد العريض */
+
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -255,9 +259,11 @@ body {
 .exp-card p {
     flex-grow: 1;
     font-size: 0.95rem;
-    line-height: 1.8; /* مسافة مريحة بين السطور */
+    line-height: 1.8;
+    /* مسافة مريحة بين السطور */
     color: #555;
-    text-align: right; /* إزالة التمدد الإجباري للنص */
+    text-align: right;
+    /* إزالة التمدد الإجباري للنص */
     margin: 15px 0 10px 0;
 }
 
@@ -471,7 +477,7 @@ footer {
     font-weight: 600;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    border: 1px solid #8ec2f9;
+    border: 1px solid #f8e890;
     cursor: default;
 }
 
@@ -481,23 +487,23 @@ footer {
 }
 
 .creative {
-    background-color: #e9f6ff;
-    color: #8ec2f9;
+    background-color: #fffef4;
+    color: #0077b6;
 }
 
 .storytelling {
-    background-color: #e9f6ff;
-    color: #8ec2f9;
+    background-color: #fffef4;
+    color: #0077b6;
 }
 
 .voice {
-    background-color: #e9f6ff;
-    color: #8ec2f9;
+    background-color: #fffef4;
+    color: #0077b6;
 }
 
 .theater {
-    background-color: #e9f6ff;
-    color: #8ec2f9;
+    background-color: #fffef4;
+    color: #0077b6;
 }
 
 .skills-title {
@@ -530,7 +536,7 @@ footer {
 .cta-button {
     display: inline-block;
     padding: 14px 40px;
-    background-color: var(--secondary-blue);
+    background-color: #003049;
     color: #ffffff !important;
     text-decoration: none;
     border-radius: 50px;
@@ -544,260 +550,15 @@ footer {
 }
 
 .cta-button:hover {
-    background-color: var(--secondary-blue);
+    background-color: #0077b6 !important;
+    /* أزرق فاتح عند التمرير */
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px #f1f8fc;
 }
 
 .cta-button:active {
     transform: translateY(-1px);
 }
 
-/* ===================================================
-   RESPONSIVE DESIGN - تجاوب كامل مع كل الأجهزة
-   iPad / لابتوب صغير: max-width: 1024px
-   تابلت:              max-width: 768px
-   جوال:               max-width: 480px
-=================================================== */
-
-/* --- iPad / اللابتوب الصغير (أقل من 1024px) --- */
-@media (max-width: 1024px) {
-    .main-header {
-        padding: 0 20px;
-    }
-
-    .nav-links {
-        gap: 18px;
-    }
-
-    .nav-links a {
-        font-size: 0.9rem;
-    }
-
-    .hero-section {
-        padding: 140px 7% 20px 7%;
-    }
-
-    .hero-sidebar {
-        flex-basis: 320px;
-    }
-
-    .typewriter-container {
-        font-size: 2.2rem;
-    }
-
-    .exp-card {
-        width: calc(33% - 20px);
-        min-width: 220px;
-        max-width: 260px;
-    }
-
-    .image-container img {
-        width: 75%;
-    }
-
-    .curve-blob,
-    .curve-filler {
-        padding: 80px 5%;
-    }
-}
-
-/* --- تابلت / آيباد عمودي (أقل من 768px) --- */
-@media (max-width: 768px) {
-
-    /* الهيدر */
-    .main-header {
-        height: auto;
-        padding: 15px 20px;
-        flex-wrap: wrap;
-        gap: 10px;
-        top: 10px !important;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .header-actions {
-        gap: 8px;
-    }
-
-    .btn-contact,
-    .btn-cv,
-    .btn-lang {
-        padding: 6px 14px;
-        font-size: 0.8rem;
-    }
-
-    /* Hero */
-    .hero-section {
-        flex-direction: column;
-        text-align: center;
-        padding: 120px 6% 40px 6%;
-        min-height: auto;
-        background-attachment: scroll;
-    }
-
-    .hero-content {
-        text-align: center;
-    }
-
-    .hero-sidebar {
-        flex-basis: auto;
-        width: 100%;
-        margin-top: 30px;
-    }
-
-    .typewriter-container {
-        font-size: 1.8rem;
-    }
-
-    .contact-wrapper {
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 30px;
-    }
-
-    /* الأقواس */
-    .curve-blob {
-        border-radius: 30px;
-        padding: 70px 5%;
-        margin-top: -30px;
-    }
-
-    .curve-filler {
-        padding: 100px 5% 70px 5%;
-        margin-top: -30px;
-    }
-
-    /* الصورة */
-    .image-section {
-        padding: 0 0 60px 0;
-        background-attachment: scroll;
-    }
-
-    .image-container img {
-        width: 90%;
-    }
-
-    /* البطاقات */
-    .exp-grid {
-        gap: 15px;
-    }
-
-    .exp-card {
-        width: calc(50% - 10px);
-        min-width: 200px;
-        max-width: 100%;
-    }
-
-    /* الشهادات */
-    .certs-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* المهارات */
-    .skills-container {
-        gap: 10px;
-    }
-
-    .skill-pill {
-        padding: 8px 18px;
-        font-size: 0.88rem;
-    }
-
-    /* النصوص */
-    .about-text {
-        font-size: 1rem;
-    }
-
-    .section-title {
-        font-size: 1.5rem;
-    }
-}
-
-/* --- جوال صغير (أقل من 480px) --- */
-@media (max-width: 480px) {
-
-    /* الهيدر */
-    .main-header {
-        top: 8px !important;
-        width: 95% !important;
-        padding: 12px 15px;
-    }
-
-    .header-logo {
-        height: 38px;
-    }
-
-    .btn-contact,
-    .btn-cv {
-        display: none;
-    }
-
-    /* Hero */
-    .hero-section {
-        padding: 100px 5% 30px 5%;
-    }
-
-    .typewriter-container {
-        font-size: 1.5rem;
-    }
-
-    /* البطاقات - عمود واحد */
-    .exp-card {
-        width: 100%;
-        min-width: unset;
-        max-width: 100%;
-    }
-
-    .slider-container,
-    .card-img {
-        height: 200px;
-    }
-
-    /* الأقواس */
-    .curve-blob {
-        border-radius: 20px;
-        padding: 60px 4%;
-    }
-
-    .curve-filler {
-        padding: 90px 4% 60px 4%;
-    }
-
-    /* الصورة */
-    .image-container img {
-        width: 100%;
-    }
-
-    /* النصوص */
-    .about-text {
-        font-size: 0.95rem;
-    }
-
-    .section-title {
-        font-size: 1.3rem;
-    }
-
-    .cta-button {
-        padding: 12px 30px;
-        font-size: 1rem;
-    }
-
-    /* الشهادات */
-    .cert-item {
-        flex-direction: column;
-        text-align: center;
-        border-right: none;
-        border-bottom: 4px solid #f8e890;
-    }
-
-    .contact-wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
-}
 
 /* تصميم زر السيرة الذاتية في الهيدر */
 .btn-cv {
@@ -837,4 +598,91 @@ footer {
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 119, 182, 0.2);
+}
+
+
+/* جعل قسم الأعمال سكرول أفقي في الجوال فقط */
+@media (max-width: 768px) {
+    @media (max-width: 768px) {
+
+        #featured-projects-container {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            gap: 15px !important;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 25px;
+            padding-left: 10px;
+        }
+
+        #featured-projects-container .exp-card {
+            flex: 0 0 50% !important;
+            min-width: 60%;
+            max-width: 70%;
+            scroll-snap-align: center;
+        }
+
+    }
+
+    #featured-projects-container::-webkit-scrollbar {
+        display: none;
+    }
+
+}
+
+/* ================================
+   Responsive Design - Mobile
+================================ */
+
+/* التابلت والجوال */
+@media (max-width: 768px) {
+
+
+    /* الهيدر صف واحد */
+    .main-header {
+        position: relative !important;
+        width: 100% !important;
+        padding: 8px 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* الشعار */
+    .header-logo {
+        height: 20px;
+    }
+
+    /* روابط التنقل */
+    .nav-links {
+        display: flex;
+        gap: 12px;
+        font-size: 0.50rem;
+    }
+
+    /* تصغير الأزرار */
+    .btn-cv,
+    .btn-contact,
+    .btn-lang {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+
+    /* مجموعة الأزرار */
+    .header-actions {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+    }
+
+    /* تقليل padding للهيرو */
+    .hero-section {
+        padding: 80px 20px 40px 20px;
+    }
+
+    .typewriter-container {
+        font-size: 1.5rem;
+    }
+
 }
