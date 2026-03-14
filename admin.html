@@ -95,19 +95,9 @@
         }
 
         @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0)
-            }
-
-            25% {
-                transform: translateX(-8px)
-            }
-
-            75% {
-                transform: translateX(8px)
-            }
+            0%, 100% { transform: translateX(0) }
+            25% { transform: translateX(-8px) }
+            75% { transform: translateX(8px) }
         }
 
         .login-btn {
@@ -278,15 +268,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card {
@@ -476,13 +459,8 @@
             opacity: 1;
         }
 
-        .toast.success {
-            background: #10b981;
-        }
-
-        .toast.error {
-            background: var(--danger);
-        }
+        .toast.success { background: #10b981; }
+        .toast.error { background: var(--danger); }
 
         .format-toolbar {
             display: flex;
@@ -513,53 +491,20 @@
             border-color: var(--primary);
         }
 
-        /* تابلت / آيباد عمودي (768px) */
-@media (max-width: 768px) {
-    .sidebar {
-        transform: translateX(100%);
-        transition: 0.3s;
-        z-index: 1000;
-    }
-    .admin-main {
-        margin-right: 0;
-        padding: 1.5rem;
-    }
-    .fg-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* آيباد أفقي / لابتوب صغير (1024px) */
-@media (max-width: 1024px) {
-    .sidebar {
-        width: 220px;
-        transform: translateX(0);
-    }
-    .admin-main {
-        margin-right: 220px;
-        padding: 1.8rem;
-    }
-    .fg-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* جوال صغير (480px) */
-@media (max-width: 480px) {
-    .sidebar {
-        transform: translateX(100%);
-        width: 100%;
-        transition: 0.3s;
-        z-index: 1000;
-    }
-    .admin-main {
-        margin-right: 0;
-        padding: 1rem;
-    }
-    .fg-grid {
-        grid-template-columns: 1fr;
-    }
-}
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(100%);
+                transition: 0.3s;
+                z-index: 1000;
+            }
+            .admin-main {
+                margin-right: 0;
+                padding: 1.5rem;
+            }
+            .fg-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -615,8 +560,7 @@
             <div class="panel active" id="panel-profile">
                 <div class="card">
                     <h3>👤 هوية الكاتبة (تظهر أسفل المقالات)</h3>
-                    <p style="font-size:0.85rem; color:#666; margin-bottom:1.5rem;">هذه البيانات تظهر في "توقيع" نهاية
-                        كل مقال في المدونة.</p>
+                    <p style="font-size:0.85rem; color:#666; margin-bottom:1.5rem;">هذه البيانات تظهر في "توقيع" نهاية كل مقال في المدونة.</p>
 
                     <div class="fg-grid">
                         <div class="form-group">
@@ -658,70 +602,51 @@
 
                 <div class="card" style="border: 2px solid var(--secondary);">
                     <h3>✏️ إعدادات المسميات والألوان</h3>
-                    <p style="font-size:0.85rem; color:#666; margin-bottom:1.5rem;">يمكنك تغيير أسماء الأقسام واختيار
-                        لون النص المتحرك في الموقع من هنا.</p>
+                    <p style="font-size:0.85rem; color:#666; margin-bottom:1.5rem;">يمكنك تغيير أسماء الأقسام واختيار لون النص المتحرك في الموقع من هنا.</p>
 
                     <div class="form-group" style="margin-bottom: 25px;">
                         <label>🎨 لون النص المتحرك (الاسم في الآلة الكاتبة)</label>
-                        <input type="color" id="t-color" value="#a2cbff"
-                            style="height: 50px; width: 100px; cursor: pointer; padding: 2px; border-radius: 8px;">
+                        <input type="color" id="t-color" value="#a2cbff" style="height: 50px; width: 100px; cursor: pointer; padding: 2px; border-radius: 8px;">
                     </div>
 
                     <div class="fg-grid">
-                        <div class="form-group"><label>قسم النبذة (عربي)</label><input id="t-about-ar"
-                                placeholder="رحلتي بين الطب والكلمة"></div>
-                        <div class="form-group"><label>قسم النبذة (إنجليزي)</label><input id="t-about-en" dir="ltr"
-                                placeholder="Where Medicine Meets Words"></div>
+                        <div class="form-group"><label>قسم النبذة (عربي)</label><input id="t-about-ar" placeholder="رحلتي بين الطب والكلمة"></div>
+                        <div class="form-group"><label>قسم النبذة (إنجليزي)</label><input id="t-about-en" dir="ltr" placeholder="Where Medicine Meets Words"></div>
                     </div>
                     <div class="fg-grid">
-                        <div class="form-group"><label>قسم المهارات (عربي)</label><input id="t-skills-ar"
-                                placeholder="مجالات الإبداع"></div>
-                        <div class="form-group"><label>قسم المهارات (إنجليزي)</label><input id="t-skills-en" dir="ltr"
-                                placeholder="Areas of Creativity"></div>
+                        <div class="form-group"><label>قسم المهارات (عربي)</label><input id="t-skills-ar" placeholder="مجالات الإبداع"></div>
+                        <div class="form-group"><label>قسم المهارات (إنجليزي)</label><input id="t-skills-en" dir="ltr" placeholder="Areas of Creativity"></div>
                     </div>
                     <div class="fg-grid">
-                        <div class="form-group"><label>قسم الأعمال (عربي)</label><input id="t-port-ar"
-                                placeholder="أعمالي وكتاباتي"></div>
-                        <div class="form-group"><label>قسم الأعمال (إنجليزي)</label><input id="t-port-en" dir="ltr"
-                                placeholder="My Works & Writings"></div>
+                        <div class="form-group"><label>قسم الأعمال (عربي)</label><input id="t-port-ar" placeholder="أعمالي وكتاباتي"></div>
+                        <div class="form-group"><label>قسم الأعمال (إنجليزي)</label><input id="t-port-en" dir="ltr" placeholder="My Works & Writings"></div>
                     </div>
                     <div class="fg-grid">
-                        <div class="form-group"><label>قسم المدونة (عربي)</label><input id="t-blog-ar"
-                                placeholder="مدونة معمل الأفكار"></div>
-                        <div class="form-group"><label>قسم المدونة (إنجليزي)</label><input id="t-blog-en" dir="ltr"
-                                placeholder="Ideas Lab Blog"></div>
+                        <div class="form-group"><label>قسم المدونة (عربي)</label><input id="t-blog-ar" placeholder="مدونة معمل الأفكار"></div>
+                        <div class="form-group"><label>قسم المدونة (إنجليزي)</label><input id="t-blog-en" dir="ltr" placeholder="Ideas Lab Blog"></div>
                     </div>
                     <div class="fg-grid">
-                        <div class="form-group"><label>قسم الشهادات (عربي)</label><input id="t-certs-ar"
-                                placeholder="الدورات والشهادات"></div>
-                        <div class="form-group"><label>قسم الشهادات (إنجليزي)</label><input id="t-certs-en" dir="ltr"
-                                placeholder="Certifications & Courses"></div>
+                        <div class="form-group"><label>قسم الشهادات (عربي)</label><input id="t-certs-ar" placeholder="الدورات والشهادات"></div>
+                        <div class="form-group"><label>قسم الشهادات (إنجليزي)</label><input id="t-certs-en" dir="ltr" placeholder="Certifications & Courses"></div>
                     </div>
                 </div>
 
                 <div class="card">
                     <h3>نبذة عني</h3>
-                    <div class="form-group"><label>الفقرة الأولى (عربي)</label><textarea id="prof-about1-ar"
-                            rows="3"></textarea></div>
-                    <div class="form-group"><label>الفقرة الأولى (إنجليزي)</label><textarea id="prof-about1-en" rows="3"
-                            dir="ltr"></textarea></div>
-                    <div class="form-group"><label>الفقرة الثانية (عربي)</label><textarea id="prof-about2-ar"
-                            rows="3"></textarea></div>
-                    <div class="form-group"><label>الفقرة الثانية (إنجليزي)</label><textarea id="prof-about2-en"
-                            rows="3" dir="ltr"></textarea></div>
+                    <div class="form-group"><label>الفقرة الأولى (عربي)</label><textarea id="prof-about1-ar" rows="3"></textarea></div>
+                    <div class="form-group"><label>الفقرة الأولى (إنجليزي)</label><textarea id="prof-about1-en" rows="3" dir="ltr"></textarea></div>
+                    <div class="form-group"><label>الفقرة الثانية (عربي)</label><textarea id="prof-about2-ar" rows="3"></textarea></div>
+                    <div class="form-group"><label>الفقرة الثانية (إنجليزي)</label><textarea id="prof-about2-en" rows="3" dir="ltr"></textarea></div>
                 </div>
 
-                <button class="btn-main" onclick="saveProfile()" id="saveProfileBtn"
-                    style="width: 100%; font-size: 1.1rem; padding: 1rem;">💾 حفظ جميع بيانات وإعدادات الملف
-                    الشخصي</button>
+                <button class="btn-main" onclick="saveProfile()" id="saveProfileBtn" style="width: 100%; font-size: 1.1rem; padding: 1rem;">💾 حفظ جميع بيانات وإعدادات الملف الشخصي</button>
             </div>
 
             <div class="panel" id="panel-cv">
                 <div class="card" style="text-align: center; padding: 4rem 2rem;">
                     <h3 style="border:none;">تحديث السيرة الذاتية (PDF)</h3>
                     <p style="color:#666; margin-bottom: 2rem;">ارفعي النسخة الأحدث من سيرتك الذاتية.</p>
-                    <input type="file" id="cv-file" accept=".pdf"
-                        style="margin: 0 auto 2rem; display: block; max-width: 300px;">
+                    <input type="file" id="cv-file" accept=".pdf" style="margin: 0 auto 2rem; display: block; max-width: 300px;">
                     <button class="btn-main" onclick="uploadCV()">⬆️ رفع وتحديث الـ CV</button>
                 </div>
             </div>
@@ -747,14 +672,10 @@
                     <p style="font-size:0.85rem; color:#666; margin-bottom:1.5rem;">كلمة المرور الافتراضية هي
                         <b>joodi2026</b>. يمكنك تغييرها الآن لحماية لوحة التحكم.
                     </p>
-                    <div class="form-group"><label>كلمة المرور الحالية</label><input type="password" id="curPass" />
-                    </div>
-                    <div class="form-group"><label>كلمة المرور الجديدة (6 أحرف أو أرقام على الأقل)</label><input
-                            type="password" id="newPass" /></div>
-                    <div class="form-group"><label>تأكيد كلمة المرور الجديدة</label><input type="password"
-                            id="confPass" /></div>
-                    <button class="btn-main" style="width: 100%; margin-top: 1rem;" onclick="changePass()">تحديث كلمة
-                        المرور</button>
+                    <div class="form-group"><label>كلمة المرور الحالية</label><input type="password" id="curPass" /></div>
+                    <div class="form-group"><label>كلمة المرور الجديدة (6 أحرف أو أرقام على الأقل)</label><input type="password" id="newPass" /></div>
+                    <div class="form-group"><label>تأكيد كلمة المرور الجديدة</label><input type="password" id="confPass" /></div>
+                    <button class="btn-main" style="width: 100%; margin-top: 1rem;" onclick="changePass()">تحديث كلمة المرور</button>
                 </div>
             </div>
         </main>
@@ -766,8 +687,7 @@
             <div id="modalBody"></div>
             <div style="display:flex; gap:1rem; margin-top:2rem; border-top: 1px solid #eee; padding-top: 1.5rem;">
                 <button id="saveBtn" class="btn-main" onclick="saveData()">💾 حفظ التغييرات</button>
-                <button class="btn-main" style="background:#f1f5f9; color:#475569;"
-                    onclick="closeModal()">إلغاء</button>
+                <button class="btn-main" style="background:#f1f5f9; color:#475569;" onclick="closeModal()">إلغاء</button>
             </div>
         </div>
     </div>
@@ -813,7 +733,7 @@
             else { inp.classList.add('shake'); document.getElementById('loginErr').innerText = "كلمة المرور غير صحيحة ❌"; setTimeout(() => inp.classList.remove('shake'), 400); }
         }
 
-        // دالة تغيير الباسوورد (الجديدة)
+        // دالة تغيير الباسوورد
         function changePass() {
             const cur = document.getElementById('curPass').value;
             const nw = document.getElementById('newPass').value;
@@ -823,7 +743,7 @@
             if (nw.length < 6) return showToast('كلمة المرور يجب أن تكون 6 أحرف أو أرقام على الأقل', 'error');
             if (nw !== conf) return showToast('كلمتا المرور غير متطابقتين', 'error');
 
-            localStorage.setItem('joodi_admin_pass', nw); // حفظ الباسوورد الجديد في المتصفح
+            localStorage.setItem('joodi_admin_pass', nw); 
             ['curPass', 'newPass', 'confPass'].forEach(id => document.getElementById(id).value = '');
             showToast('✅ تم تحديث كلمة المرور بنجاح!', 'success');
         }
@@ -831,13 +751,13 @@
         function logout() { sessionStorage.removeItem('joodi_auth'); window.location.reload(); }
         function showToast(msg, type = 'success') { const t = document.getElementById('toast'); t.innerText = msg; t.className = `toast show ${type}`; setTimeout(() => t.classList.remove('show'), 3000); }
 
-        // تحديث دالة التحميل
+        // تحديث دالة التحميل (لجلب كافة البيانات)
         async function loadProfile() {
             try {
                 const res = await fetch(`${FIREBASE_URL}/profile.json`);
                 const data = await res.json();
                 if (data) {
-                    // الحقول الجديدة
+                    // الهوية
                     document.getElementById('prof-name-ar').value = data.authorNameAr || '';
                     document.getElementById('prof-name-en').value = data.authorNameEn || '';
                     document.getElementById('prof-bio-ar').value = data.authorBioAr || '';
@@ -848,12 +768,32 @@
                     document.getElementById('prof-email').value = data.email || '';
                     document.getElementById('prof-linkedin').value = data.linkedin || '';
 
+                    // المسميات والألوان 
+                    document.getElementById('t-color').value = data.textColor || '#a2cbff';
+                    document.getElementById('t-about-ar').value = data.titleAboutAr || '';
+                    document.getElementById('t-about-en').value = data.titleAboutEn || '';
+                    document.getElementById('t-skills-ar').value = data.titleSkillsAr || '';
+                    document.getElementById('t-skills-en').value = data.titleSkillsEn || '';
+                    document.getElementById('t-port-ar').value = data.titlePortAr || '';
+                    document.getElementById('t-port-en').value = data.titlePortEn || '';
+                    document.getElementById('t-blog-ar').value = data.titleBlogAr || '';
+                    document.getElementById('t-blog-en').value = data.titleBlogEn || '';
+                    document.getElementById('t-certs-ar').value = data.titleCertsAr || '';
+                    document.getElementById('t-certs-en').value = data.titleCertsEn || '';
+
+                    // فقرات النبذة 
+                    document.getElementById('prof-about1-ar').value = data.aboutP1Ar || '';
+                    document.getElementById('prof-about1-en').value = data.aboutP1En || '';
+                    document.getElementById('prof-about2-ar').value = data.aboutP2Ar || '';
+                    document.getElementById('prof-about2-en').value = data.aboutP2En || '';
+
                     window.oldLogo = data.logo || '';
+                    window.oldCv = data.cv || ''; 
                 }
             } catch (e) { console.error("Error loading profile", e); }
         }
 
-        // تحديث دالة الحفظ
+        // تحديث دالة الحفظ (النسخة الشاملة لجميع الخانات)
         async function saveProfile() {
             const btn = document.getElementById('saveProfileBtn');
             btn.innerText = "جاري الحفظ...";
@@ -864,14 +804,38 @@
             }
 
             const profileData = {
+                // الهوية
                 authorNameAr: document.getElementById('prof-name-ar').value,
                 authorNameEn: document.getElementById('prof-name-en').value,
                 authorBioAr: document.getElementById('prof-bio-ar').value,
                 authorBioEn: document.getElementById('prof-bio-en').value,
+                
+                // التواصل
                 phone: document.getElementById('prof-phone').value,
                 email: document.getElementById('prof-email').value,
                 linkedin: document.getElementById('prof-linkedin').value,
-                logo: logoData
+
+                // المسميات والألوان 
+                textColor: document.getElementById('t-color').value,
+                titleAboutAr: document.getElementById('t-about-ar').value,
+                titleAboutEn: document.getElementById('t-about-en').value,
+                titleSkillsAr: document.getElementById('t-skills-ar').value,
+                titleSkillsEn: document.getElementById('t-skills-en').value,
+                titlePortAr: document.getElementById('t-port-ar').value,
+                titlePortEn: document.getElementById('t-port-en').value,
+                titleBlogAr: document.getElementById('t-blog-ar').value,
+                titleBlogEn: document.getElementById('t-blog-en').value,
+                titleCertsAr: document.getElementById('t-certs-ar').value,
+                titleCertsEn: document.getElementById('t-certs-en').value,
+
+                // فقرات النبذة 
+                aboutP1Ar: document.getElementById('prof-about1-ar').value,
+                aboutP1En: document.getElementById('prof-about1-en').value,
+                aboutP2Ar: document.getElementById('prof-about2-ar').value,
+                aboutP2En: document.getElementById('prof-about2-en').value,
+
+                logo: logoData,
+                cv: window.oldCv || '' 
             };
 
             await fetch(`${FIREBASE_URL}/profile.json`, { method: 'PUT', body: JSON.stringify(profileData) });
