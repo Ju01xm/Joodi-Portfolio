@@ -256,18 +256,23 @@
                     linkedinLink.href = data.profile.linkedin;
                     linkedinLink.target = "_blank";
                 }
+
                 const cvBtn = document.getElementById('header-cv-btn');
-    if (cvBtn) {
-        if (data.profile.cv) { 
-            // إذا وجد رابط السيرة الذاتية في Firebase تحت اسم cv
-            cvBtn.href = data.profile.cv;
-            cvBtn.style.display = 'inline-block'; // إظهار الزر
-            cvBtn.target = "_blank"; // فتح في صفحة جديدة
-        } else {
-            // إذا لم يوجد رابط، يفضل إخفاء الزر أو تعطيله
-            cvBtn.style.display = 'none';
-        }
-    }
+                if (cvBtn) {
+                    // نتحقق من وجود الرابط في data.profile.cv
+                    if (data.profile && data.profile.cv) {
+                        cvBtn.href = data.profile.cv;
+                        cvBtn.style.display = 'inline-block'; // يظهر إذا وجد الرابط
+                        console.log("CV Link Found: ", data.profile.cv);
+                    } else {
+                        // إذا لم يجد الرابط، نظهره لكن نجعله يعطي تنبيه عند الضغط
+                        cvBtn.style.display = 'inline-block'; 
+                        cvBtn.onclick = (e) => {
+                            e.preventDefault();
+                            alert("سيتم إضافة السيرة الذاتية قريباً! ✨");
+                        };
+                    }
+                }
 
                 const p1 = document.getElementById('about-p1');
                 const p2 = document.getElementById('about-p2');
