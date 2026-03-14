@@ -161,6 +161,7 @@ body {
     background-attachment: fixed;
     position: relative;
     z-index: 1;
+    background-attachment: scroll !important; /* ☁️ وهنا كمان نرجع الغيوم */
 }
 
 .image-container {
@@ -628,6 +629,7 @@ footer {
         padding: 60px 20px 40px 20px !important;
         text-align: center !important; 
         align-items: center;
+        background-attachment: scroll !important; /* ☁️ هذا السطر اللي بيرجع الغيوم */
     }
 
     .hero-content {
