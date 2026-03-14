@@ -553,20 +553,249 @@ footer {
     transform: translateY(-1px);
 }
 
-/* الجوال */
-@media (max-width: 500px) {
-    .hero-section {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 120px;
+/* ===================================================
+   RESPONSIVE DESIGN - تجاوب كامل مع كل الأجهزة
+   iPad / لابتوب صغير: max-width: 1024px
+   تابلت:              max-width: 768px
+   جوال:               max-width: 480px
+=================================================== */
+
+/* --- iPad / اللابتوب الصغير (أقل من 1024px) --- */
+@media (max-width: 1024px) {
+    .main-header {
+        padding: 0 20px;
     }
 
-    .contact-wrapper {
-        justify-content: center;
+    .nav-links {
+        gap: 18px;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+
+    .hero-section {
+        padding: 140px 7% 20px 7%;
+    }
+
+    .hero-sidebar {
+        flex-basis: 320px;
     }
 
     .typewriter-container {
         font-size: 2.2rem;
+    }
+
+    .exp-card {
+        width: calc(33% - 20px);
+        min-width: 220px;
+        max-width: 260px;
+    }
+
+    .image-container img {
+        width: 75%;
+    }
+
+    .curve-blob,
+    .curve-filler {
+        padding: 80px 5%;
+    }
+}
+
+/* --- تابلت / آيباد عمودي (أقل من 768px) --- */
+@media (max-width: 768px) {
+
+    /* الهيدر */
+    .main-header {
+        height: auto;
+        padding: 15px 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+        top: 10px !important;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .header-actions {
+        gap: 8px;
+    }
+
+    .btn-contact,
+    .btn-cv,
+    .btn-lang {
+        padding: 6px 14px;
+        font-size: 0.8rem;
+    }
+
+    /* Hero */
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 120px 6% 40px 6%;
+        min-height: auto;
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-sidebar {
+        flex-basis: auto;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .typewriter-container {
+        font-size: 1.8rem;
+    }
+
+    .contact-wrapper {
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+
+    /* الأقواس */
+    .curve-blob {
+        border-radius: 30px;
+        padding: 70px 5%;
+        margin-top: -30px;
+    }
+
+    .curve-filler {
+        padding: 100px 5% 70px 5%;
+        margin-top: -30px;
+    }
+
+    /* الصورة */
+    .image-section {
+        padding: 0 0 60px 0;
+        background-attachment: scroll;
+    }
+
+    .image-container img {
+        width: 90%;
+    }
+
+    /* البطاقات */
+    .exp-grid {
+        gap: 15px;
+    }
+
+    .exp-card {
+        width: calc(50% - 10px);
+        min-width: 200px;
+        max-width: 100%;
+    }
+
+    /* الشهادات */
+    .certs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* المهارات */
+    .skills-container {
+        gap: 10px;
+    }
+
+    .skill-pill {
+        padding: 8px 18px;
+        font-size: 0.88rem;
+    }
+
+    /* النصوص */
+    .about-text {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* --- جوال صغير (أقل من 480px) --- */
+@media (max-width: 480px) {
+
+    /* الهيدر */
+    .main-header {
+        top: 8px !important;
+        width: 95% !important;
+        padding: 12px 15px;
+    }
+
+    .header-logo {
+        height: 38px;
+    }
+
+    .btn-contact,
+    .btn-cv {
+        display: none;
+    }
+
+    /* Hero */
+    .hero-section {
+        padding: 100px 5% 30px 5%;
+    }
+
+    .typewriter-container {
+        font-size: 1.5rem;
+    }
+
+    /* البطاقات - عمود واحد */
+    .exp-card {
+        width: 100%;
+        min-width: unset;
+        max-width: 100%;
+    }
+
+    .slider-container,
+    .card-img {
+        height: 200px;
+    }
+
+    /* الأقواس */
+    .curve-blob {
+        border-radius: 20px;
+        padding: 60px 4%;
+    }
+
+    .curve-filler {
+        padding: 90px 4% 60px 4%;
+    }
+
+    /* الصورة */
+    .image-container img {
+        width: 100%;
+    }
+
+    /* النصوص */
+    .about-text {
+        font-size: 0.95rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .cta-button {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+
+    /* الشهادات */
+    .cert-item {
+        flex-direction: column;
+        text-align: center;
+        border-right: none;
+        border-bottom: 4px solid #f8e890;
+    }
+
+    .contact-wrapper {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
