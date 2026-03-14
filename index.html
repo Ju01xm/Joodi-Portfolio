@@ -256,6 +256,18 @@
                     linkedinLink.href = data.profile.linkedin;
                     linkedinLink.target = "_blank";
                 }
+                const cvBtn = document.getElementById('header-cv-btn');
+    if (cvBtn) {
+        if (data.profile.cv) { 
+            // إذا وجد رابط السيرة الذاتية في Firebase تحت اسم cv
+            cvBtn.href = data.profile.cv;
+            cvBtn.style.display = 'inline-block'; // إظهار الزر
+            cvBtn.target = "_blank"; // فتح في صفحة جديدة
+        } else {
+            // إذا لم يوجد رابط، يفضل إخفاء الزر أو تعطيله
+            cvBtn.style.display = 'none';
+        }
+    }
 
                 const p1 = document.getElementById('about-p1');
                 const p2 = document.getElementById('about-p2');
@@ -424,18 +436,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             applyLanguage(currentLang);
             fetchSiteData();
-
-            // برمجة زر عرض الـ CV في الهيدر
-            fetch(`${FIREBASE_URL}/cv.json`).then(r => r.json()).then(data => {
-                if (data && data.fileData) {
-                    const headerCvBtn = document.getElementById('header-cv-btn');
-                    if (headerCvBtn) {
-                        headerCvBtn.href = data.fileData;
-                        headerCvBtn.style.display = 'inline-block'; // إظهار الزر إذا كانت السيرة الذاتية موجودة
-                        headerCvBtn.download = "Joodi_CV.pdf"; // تحميل كملف PDF
-                    }
-                }
-            });
         });
     </script>
     <script src="script.js"></script>
